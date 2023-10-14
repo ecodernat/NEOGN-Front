@@ -67,7 +67,11 @@ const cartSlice = createSlice({
         if (act === "+") {
           itemToUpdate.quantity++;
         } else if (act === "-") {
-          itemToUpdate.quantity = Math.max(itemToUpdate.quantity - 1, 0);
+          // itemToUpdate.quantity = Math.max(itemToUpdate.quantity - 1, 0);
+          itemToUpdate.quantity =
+            act === "+"
+              ? itemToUpdate.quantity + 1
+              : Math.max(itemToUpdate.quantity - 1, 0);
 
           if (itemToUpdate.quantity === 0) {
             state.items = state.items.filter((item) => item.id !== id);
