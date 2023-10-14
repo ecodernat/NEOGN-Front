@@ -1,13 +1,12 @@
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import fetchProductById from "../redux/actions/fetchProductById";
 import { useNavigate } from "react-router-dom";
-import { addToCart } from "../redux/slices/cartSlice";
+import { addToCart } from "../redux/slices/CartSlice";
 import heart from "../utils/images/AppbarIcons/DarkHeart.png";
 import backIcon from "../utils/images/BasicIcons/backIcon.png";
-import toast, { Toaster } from 'react-hot-toast'
-
+import toast, { Toaster } from "react-hot-toast";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const Detail = () => {
     navigate(-1);
   };
 
-  const product = useSelector((state) =>  state.detail.detail);
+  const product = useSelector((state) => state.detail.detail);
 
   const enCar = useSelector((state) => {
     return state.cart;
@@ -40,7 +39,7 @@ const Detail = () => {
       image: product.image_url,
       description: product.description,
     };
-    toast.success('Added to cart successfully ')
+    toast.success("Added to cart successfully ");
 
     console.log(productData);
     dispatch(addToCart(productData));
@@ -204,7 +203,7 @@ const Detail = () => {
           </button>
         </div>
       </div>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };
