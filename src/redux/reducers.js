@@ -4,29 +4,29 @@ import productsReducer from "./slices/productsSlice";
 import userReducer from "./slices/userSlice";
 import allUsersReducer from "./slices/allUsersSlice";
 import detailReducer from "./slices/detailSlice";
-import filterReducer from "./slices/filterSlice"
-import myOrdersReducer from "./slices/myOrdersSlice"
-import orderDetailReducer from "./slices/orderDetailSlice"
-import cartReducer from "./slices/cartSlice"
+import filterReducer from "./slices/filterSlice";
+import myOrdersReducer from "./slices/myOrdersSlice";
+import orderDetailReducer from "./slices/orderDetailSlice";
+import cartReducer from "./slices/CartSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import wishlistReducer from "./slices/WishlistSlice";
 import categoryReducer from "./slices/categorySlice";
-import loginReducer from "./slices/LoginSlice"
+import loginReducer from "./slices/LoginSlice";
 const userPersistConfig = {
   key: "user",
   storage: storage,
 };
 
 const rootReducer = combineReducers({
-  login : loginReducer,
+  login: loginReducer,
   user: persistReducer(userPersistConfig, userReducer),
   orderDetail: orderDetailReducer,
   myOrders: myOrdersReducer,
   category: categoryReducer,
   wishlist: wishlistReducer,
   filter: filterReducer,
-  cart:cartReducer,
+  cart: cartReducer,
   detail: detailReducer,
   products: productsReducer,
   allUsers: allUsersReducer,
