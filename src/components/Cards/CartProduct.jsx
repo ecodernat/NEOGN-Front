@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem, setQuantity } from "../../redux/slices/cartSlice";
+import { removeItem, setQuantity } from "../../redux/slices/CartSlice";
 import { useState, useEffect } from "react";
-import toast, { Toaster } from 'react-hot-toast'
-
+import toast, { Toaster } from "react-hot-toast";
 
 const CartProduct = ({ id, product, calculateTotal }) => {
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ const CartProduct = ({ id, product, calculateTotal }) => {
   };
 
   const remove = (id) => {
-    toast.success('Product successfully removed')
+    toast.success("Product successfully removed");
     dispatch(removeItem(id));
   };
 
@@ -73,7 +72,7 @@ const CartProduct = ({ id, product, calculateTotal }) => {
           </button>
         </div>
       </div>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };
