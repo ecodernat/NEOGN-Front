@@ -14,9 +14,11 @@ const Home = () => {
   let products = useSelector((state) => state.products.products);
   let productFiltered = useSelector((state) => state.filter);
   products = products.slice(0, 4);
-  let filtradolo = productFiltered.filterResult.results
-    ? productFiltered.filterResult.results.slice(0, 4)
-    : [];
+  let filtradolo =
+    Array.isArray(productFiltered.filterResult.results) &&
+    productFiltered.filterResult.results.length > 0
+      ? productFiltered.filterResult.results.slice(0, 4)
+      : [];
 
   useEffect(() => {
     // Simula una carga de datos con un retraso de 1.5 segundos
@@ -58,7 +60,7 @@ const Home = () => {
           {filtradolo.map((product, i) => (
             <HomeCard
               key={i}
-              image={product.image_url}
+              image={product.image_url[0]}
               id={product.id}
               price={product.price}
               name={product.name}
