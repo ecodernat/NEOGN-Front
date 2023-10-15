@@ -38,7 +38,7 @@ export function AuthProvider({ children }) {
 
       try {
         const checkUserResponse = await axios.get(
-          `http://localhost:3001/api/users/${currentUser.uid}`
+          `/api/users/${currentUser.uid}`
         );
 
         if (checkUserResponse.status === 200) {
@@ -46,15 +46,12 @@ export function AuthProvider({ children }) {
           setAuthReady(true);
         }
       } catch (error) {
-        const createUserResponse = await axios.post(
-          "http://localhost:3001/api/users/signUp",
-          {
-            clientId: currentUser.uid,
-            email: currentUser.email,
-            photo: currentUser.photoURL,
-            name: currentUser.displayName,
-          }
-        );
+        const createUserResponse = await axios.post("/api/users/signUp", {
+          clientId: currentUser.uid,
+          email: currentUser.email,
+          photo: currentUser.photoURL,
+          name: currentUser.displayName,
+        });
 
         if (createUserResponse.status === 200) {
           console.log("Successful Registration");
@@ -87,7 +84,7 @@ export function AuthProvider({ children }) {
       };
 
       const createUserResponse = await axios.post(
-        "http://localhost:3001/api/users/signUp",
+        "/api/users/signUp",
         userData
       );
 
@@ -113,9 +110,7 @@ export function AuthProvider({ children }) {
 
       const authUid = auth.currentUser.uid;
 
-      const checkUserResponse = await axios.get(
-        `http://localhost:3001/api/users/${authUid}`
-      );
+      const checkUserResponse = await axios.get(`/api/users/${authUid}`);
 
       if (checkUserResponse.status === 200) {
         setUser(auth.currentUser);

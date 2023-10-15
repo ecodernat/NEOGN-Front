@@ -12,9 +12,7 @@ const ProductsToModify = () => {
   const fetchProducts = () => {
     return async function (dispatch) {
       try {
-        const json = await axios.get(
-          "https://neogn-back.up.railway.app/api/products/filter?order=A-Z"
-        );
+        const json = await axios.get("/api/products/filter?order=A-Z");
         const products = json.data;
         return dispatch(getProducts(products.results));
       } catch (error) {
@@ -30,12 +28,9 @@ const ProductsToModify = () => {
   const toggleStatus = async (productId, newStatus) => {
     console.log(productId);
     try {
-      await axios.put(
-        `https://neogn-back.up.railway.app/api/products/update/${productId}`,
-        {
-          isAvailable: newStatus,
-        }
-      );
+      await axios.put(`/api/products/update/${productId}`, {
+        isAvailable: newStatus,
+      });
       // dispatch(getAllUsers());
     } catch (error) {
       console.error("Error toggling admin status:", error);

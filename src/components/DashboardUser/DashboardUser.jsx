@@ -16,16 +16,14 @@ const DashBoardUser = ({ handleThemeSwitch }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    dispatch(setLogin({login:true}))
+    dispatch(setLogin({ login: true }));
     if (auth.authReady) {
       const fetchDetail = async () => {
         try {
           setLoading(true);
           setError(null);
 
-          const json = await axios.get(
-            `http://localhost:3001/api/users/${auth.user.uid}`
-          );
+          const json = await axios.get(`/api/users/${auth.user.uid}`);
           if (!json) console.log("No existe en la db");
           const detail = json.data;
           dispatch(getUser(detail));
@@ -41,7 +39,7 @@ const DashBoardUser = ({ handleThemeSwitch }) => {
 
   const handleLogout = () => {
     auth.logout();
-    dispatch(setLogin({login:false}));
+    dispatch(setLogin({ login: false }));
     dispatch(clearUser());
   };
 

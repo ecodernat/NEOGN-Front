@@ -12,9 +12,7 @@ const ManageUser = () => {
   const getAllUsers = () => {
     return async function (dispatch) {
       try {
-        const json = await axios.get(
-          "https://neogn-back.up.railway.app/api/users"
-        );
+        const json = await axios.get("/api/users");
         const users = json.data;
         return dispatch(getUsers(users));
       } catch (error) {
@@ -29,12 +27,9 @@ const ManageUser = () => {
 
   const toggleAdminStatus = async (userId, newAdminStatus) => {
     try {
-      await axios.put(
-        `https://neogn-back.up.railway.app/api/users/update/${userId}`,
-        {
-          isAdmin: newAdminStatus,
-        }
-      );
+      await axios.put(`/api/users/update/${userId}`, {
+        isAdmin: newAdminStatus,
+      });
       dispatch(getAllUsers());
     } catch (error) {
       console.error("Error toggling admin status:", error);
@@ -44,12 +39,9 @@ const ManageUser = () => {
   const toggleStatus = async (userId, newStatus) => {
     console.log(userId);
     try {
-      await axios.put(
-        `https://neogn-back.up.railway.app/api/users/update/${userId}`,
-        {
-          isDisable: newStatus,
-        }
-      );
+      await axios.put(`/api/users/update/${userId}`, {
+        isDisable: newStatus,
+      });
       dispatch(getAllUsers());
     } catch (error) {
       console.error("Error toggling admin status:", error);
