@@ -136,10 +136,7 @@ const CreateProduct = () => {
       return;
     }
 
-    const responseInput = await axios.post(
-      "https://neogn-back.up.railway.app/api/products/create",
-      input
-    );
+    const responseInput = await axios.post("/api/products/create", input);
 
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
@@ -148,7 +145,7 @@ const CreateProduct = () => {
     }
 
     const responseImage = await axios.post(
-      `https://neogn-back.up.railway.app/api/products/images/${responseInput.data.id}`,
+      `/api/products/images/${responseInput.data.id}`,
       formData,
       { headers: { "Content-Type": "multipart/form-data" } }
     );

@@ -13,7 +13,7 @@ const WalletPayment = ({ prefId }) => {
     try {
       console.log(user.id);
       const response = await axios.post(
-        "http://localhost:3001/api/payment/create-preference",
+        "/api/payment/create-preference",
         {
           userId: user.id,
           items: items.map((item) => ({

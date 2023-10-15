@@ -12,9 +12,7 @@ const ManageStock = () => {
   const setProductDetails = () => {
     return async function (dispatch) {
       try {
-        const json = await axios.get(
-          "https://neogn-back.up.railway.app/api/products"
-        );
+        const json = await axios.get("/api/products");
         const users = json.data;
         return dispatch(setProductDetail(users));
       } catch (error) {
@@ -30,13 +28,10 @@ const ManageStock = () => {
   const toggleStatus = async (userId, currentStatus, newStock) => {
     console.log(userId);
     try {
-      await axios.put(
-        `https://neogn-back.up.railway.app/products/update/${userId}`,
-        {
-          isAvailable: currentStatus,
-          stock: newStock,
-        }
-      );
+      await axios.put(`/api/products/update/${userId}`, {
+        isAvailable: currentStatus,
+        stock: newStock,
+      });
       dispatch(setProductDetails());
     } catch (error) {
       console.error("Error toggling available status:", error);

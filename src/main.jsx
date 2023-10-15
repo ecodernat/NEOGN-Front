@@ -7,6 +7,10 @@ import App from "./App.jsx";
 import "./index.css";
 import { store, persistor } from "./redux/store.js";
 
+import axios from "axios";
+axios.defaults.baseURL = "https://neogn-back.up.railway.app";
+// axios.defaults.baseURL="http://localhost:3001"
+
 // persistor.purge();
 
 ReactDOM.createRoot(document.getElementById("root")).render(

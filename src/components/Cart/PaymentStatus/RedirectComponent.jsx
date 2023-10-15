@@ -5,7 +5,7 @@ import ApprovedComponent from "./Approved";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const RedirectComponent = ({status}) => {
+const RedirectComponent = ({ status }) => {
   const navigate = useNavigate();
   const [seconds, setSeconds] = useState(10);
   useEffect(() => {
@@ -20,15 +20,12 @@ const RedirectComponent = ({status}) => {
           setSeconds((prevSeconds) => prevSeconds - 1);
         }, 1000);
 
-        const response = await axios.post(
-          "http://localhost:3001/api/payment/webhook",
-          {
-            status: status,
-            preference_id: receivedId,
-            orderId: receivedref,
-            paymentId,
-          }
-        );
+        const response = await axios.post("/api/payment/webhook", {
+          status: status,
+          preference_id: receivedId,
+          orderId: receivedref,
+          paymentId,
+        });
 
         console.log(response.data);
 

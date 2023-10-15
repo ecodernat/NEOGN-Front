@@ -4,9 +4,7 @@ import { getProducts } from "../slices/productsSlice";
 const fetchProducts = () => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(
-        "https://neogn-back.up.railway.app/api/products"
-      );
+      const json = await axios.get("/api/products");
       const products = json.data;
       return dispatch(getProducts(products));
     } catch (error) {

@@ -29,9 +29,7 @@ const EditedProduct = () => {
   const fetchDetail = () => {
     return async function (dispatch) {
       try {
-        const json = await axios.get(
-          `https://neogn-back.up.railway.app/api/products/${id}`
-        );
+        const json = await axios.get(`/api/products/${id}`);
         const detail = json.data;
         return dispatch(setProductDetail(detail));
       } catch (error) {
