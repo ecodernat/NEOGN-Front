@@ -7,13 +7,16 @@ import App from "./App.jsx";
 import "./index.css";
 import { store, persistor } from "./redux/store.js";
 
+const URL_PRODUCTION = import.meta.env.VITE_URL_PRODUCTION;
+const URL_LOCAL = import.meta.env.VITE_URL_LOCAL;
+
 import axios from "axios";
 
 //Descomentar la ruta a la API en la que se desea realizar la peticion y comentar el que no se utilizará
 // ----------------------------------------------------
 
-axios.defaults.baseURL = "https://neogn-back.up.railway.app";
-// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = URL_PRODUCTION;
+// axios.defaults.baseURL = URL_LOCAL;
 
 // ----------------------------------------------------
 

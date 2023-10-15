@@ -5,52 +5,52 @@ import CategoriesFilter from "../components/CategoriesForFilters";
 import SearchCard from "../components/Cards/SearchCard";
 import FilterSortRange from "../components/FilterSortRange";
 import fetchProducts from "../redux/actions/getProducts";
-import getFilter from '../redux/actions/getFilter';
-import { addToWishlist, removeFromWishlist } from "../redux/slices/WishlistSlice";
+import getFilter from "../redux/actions/getFilter";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../redux/slices/WishlistSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const categoryState = useSelector((state)=> state.category);  
+  const categoryState = useSelector((state) => state.category);
   const productFiltered = useSelector((state) => state.filter);
-  const loginState = useSelector((state)=>state.login);
-  console.log("login state", loginState)
+  const loginState = useSelector((state) => state.login);
+  console.log("login state", loginState);
   const [showFilter, setShowFilter] = useState(false);
   const [addedProducts, setAddedProducts] = useState([]);
-
 
   const toFilter = () => {
     setShowFilter(!showFilter);
   };
 
-  
-  
   const toggleWishlist = (productId) => {
     const product = productFiltered.filterResult.results.find(
       (product) => product.id === productId
     );
     if (product) {
-      if (addedProducts.some((p) => p.id === product.id)) {        
-        return; 
+      if (addedProducts.some((p) => p.id === product.id)) {
+        return;
       }
       dispatch(addToWishlist(product));
-      setAddedProducts([...addedProducts, product]);      
+      setAddedProducts([...addedProducts, product]);
     }
   };
 
-const handleSelection = (category) => {
-  setSelectCategory(category);
-  
-  // Verificar si el estado de getFilter está vacío
-  if (isEmpty(getFilterState)) {
-    dispatch(getFilter({ category: category }));
-  }
-}
+  const handleSelection = (category) => {
+    setSelectCategory(category);
 
-// La función isEmpty puede ser una función personalizada que verifica si el estado está vacío
-// Por ejemplo, podrías definirla así:
-function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
-}
+    // Verificar si el estado de getFilter está vacío
+    if (isEmpty(getFilterState)) {
+      dispatch(getFilter({ category: category }));
+    }
+  };
+
+  // La función isEmpty puede ser una función personalizada que verifica si el estado está vacío
+  // Por ejemplo, podrías definirla así:
+  function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
 
   return (
     <div className="h-full pb-32">
@@ -62,9 +62,7 @@ function isEmpty(obj) {
           <LuSettings2 className="text-black-500 text-[30px] font-semibold" />
         </button>
       </div>
-      {showFilter && <FilterSortRange/>   
-        
-         } 
+      {showFilter && <FilterSortRange />}
       <div className="w-auto h-auto m-6">
         <CategoriesFilter />
       </div>
@@ -88,19 +86,18 @@ function isEmpty(obj) {
                 toggleWishlist={toggleWishlist}
               />
             ))
-          ) : 
-            (<>
+          ) : (
+            <>
               <div
-              className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-              role="status">
-                <span
-                  className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-                  >Loading...</span
-                >
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status"
+              >
+                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                  Loading...
+                </span>
               </div>
-            </>      )
-
-          }
+            </>
+          )}
         </div>
       </div>
     </div>
