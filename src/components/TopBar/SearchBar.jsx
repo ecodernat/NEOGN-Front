@@ -11,14 +11,14 @@ const Searchbar = ({ onFocusChange, onClose }) => {
   const searcher = (e) => {
     const searchTerm = e.target.value.toLowerCase();
     setSearch(searchTerm);
-    setShowSearch(searchTerm !== "")
+    setShowSearch(searchTerm !== "");
   };
 
   const filteredProducts = products.filter((product) => {
     const productName = product.name.toLowerCase();
 
     return productName.includes(search);
-  })
+  });
 
   useEffect(() => {
     setShowSearch(isFocused && search !== "");
@@ -52,7 +52,7 @@ const Searchbar = ({ onFocusChange, onClose }) => {
         <input
           type="text"
           className={`z-300 bg-transparent rounded-full border flex-1 text-gray-500 focus:outline-none focus:border-blue-700 focus:ring px-4 transition duration-300 ease-in-out
-          focus:ring-blue-300 ease-in-out shadow-sm  ${
+          focus:ring-blue-300 shadow-sm  ${
             isFocused ? " ring ring-blue-200 shadow-md" : "hidden"
           }`}
           placeholder="Search anything"
@@ -74,7 +74,7 @@ const Searchbar = ({ onFocusChange, onClose }) => {
         </svg>
       </div>
 
-      {showSearch && search !== ""  && (
+      {showSearch && search !== "" && (
         <ul className="absolute z-40 w-full bg-white border border-gray-200 shadow-lg rounded-md mt-2">
           {filteredProducts.length === 0 ? (
             <li className="py-2 px-4 text-red-500">Product not found!</li>
