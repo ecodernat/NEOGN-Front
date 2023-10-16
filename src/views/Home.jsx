@@ -20,6 +20,8 @@ const Home = () => {
       ? productFiltered.filterResult.results.slice(0, 4)
       : [];
 
+      console.log(filtradolo)
+
   useEffect(() => {
     // Simula una carga de datos con un retraso de 1.5 segundos
     const fetchData = () => {
