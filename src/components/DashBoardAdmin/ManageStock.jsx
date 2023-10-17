@@ -26,7 +26,6 @@ const ManageStock = () => {
   }, [dispatch]);
 
   const toggleStatus = async (userId, currentStatus, newStock) => {
-    console.log(userId);
     try {
       await axios.put(`/api/products/update/${userId}`, {
         isAvailable: currentStatus,

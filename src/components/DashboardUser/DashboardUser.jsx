@@ -75,7 +75,25 @@ const DashBoardUser = ({ handleThemeSwitch }) => {
       </div>
       <div className="w-full h-auto gap-y-6 flex flex-col py-4 px-10">
         <Link
-          to="/Account/EditProfile"
+          to="/Admin/Manage-Stock"
+          className="w-auto h-auto flex items-center justify-between"
+        >
+          <div className="w-auto h-auto flex items-center gap-6">
+            <img
+              className="w-auto h-[24px]"
+              src="https://www.svgrepo.com/show/520684/dashboard.svg"
+            />
+            <h1 className="font-general-sans text-neutral-800 text-lg font-medium">
+              Dashboard Admin
+            </h1>
+          </div>
+          <img
+            className="w-auto h-[14px]"
+            src="https://www.svgrepo.com/show/152459/right-thin-arrowheads.svg"
+          />
+        </Link>
+        <Link
+          to="/Account/Edit-Profile"
           className="w-auto h-auto flex items-center justify-between"
         >
           <div className="w-auto h-auto flex items-center gap-6">

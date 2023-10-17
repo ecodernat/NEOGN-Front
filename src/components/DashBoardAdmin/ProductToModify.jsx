@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ProductsToModify = () => {
   const products = useSelector((state) => state.products.products);
-  console.log(products === true);
+
   const dispatch = useDispatch();
 
   const fetchProducts = () => {
@@ -26,7 +26,6 @@ const ProductsToModify = () => {
   }, [dispatch]);
 
   const toggleStatus = async (productId, newStatus) => {
-    console.log(productId);
     try {
       await axios.put(`/api/products/update/${productId}`, {
         isAvailable: newStatus,

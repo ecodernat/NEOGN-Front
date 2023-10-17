@@ -68,7 +68,6 @@ const EditedProduct = () => {
         return average;
       };
       const averageRating = calculateAverageRating(detail.rating);
-      console.log(averageRating);
 
       setInput({
         name: detail.name,
@@ -82,8 +81,6 @@ const EditedProduct = () => {
       });
     }
   }, [detail]);
-
-  console.log(input);
 
   const [errors, setErrors] = useState({
     name: "",
@@ -200,7 +197,6 @@ const EditedProduct = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(event);
     const fieldErrors = {
       name: validateName(input.name),
       description: validateDescription(input.description),

@@ -25,7 +25,7 @@ import SignUp from "./components/Account/SignUp";
 import EditProfile from "./components/DashboardUser/EditProfile";
 import OrderHistory from "./components/DashboardUser/OrderHistory";
 import WishlistAccount from "./components/DashboardUser/WishlistAccount";
-import OrderDetails from "./components/DashboardUser/Orders/OrderDetails"
+import OrderDetails from "./components/DashboardUser/Orders/OrderDetails";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -62,7 +62,14 @@ const App = () => {
     location.pathname.startsWith("/Account/EditProfile") ||
     location.pathname.startsWith("/Account/Orders") ||
     location.pathname.startsWith("/Account/Wishlist") ||
-    location.pathname.startsWith("/Account/SignUp");
+    location.pathname.startsWith("/Account/SignUp") ||
+    location.pathname === "/Admin" ||
+    location.pathname.startsWith("/Admin/Purchase-History") ||
+    location.pathname.startsWith("/Admin/Create-Product") ||
+    location.pathname.startsWith("/Admin/Products-To-Modify") ||
+    location.pathname.startsWith("/Admin/Products-To-Modify/:id") ||
+    location.pathname.startsWith("/Admin/Manage-Stock") ||
+    location.pathname.startsWith("/Admin/Manage-User");
 
   return (
     <AuthProvider>
@@ -70,13 +77,13 @@ const App = () => {
         {!isTopBarHidden && <TopBar />}
         <Routes>
           {/* Dashboard Admin */}
-          <Route path="/admin" element={<DashBoardAdmin />}>
-            <Route path="purchaseHistory" element={<PurchaseHistory />} />
-            <Route path="createProduct" element={<CreateProduct />} />
-            <Route path="productsToModify" element={<ProductsToModify />} />
-            <Route path="productsTomodify/:id" element={<EditedProduct />} />
-            <Route path="manageStock" element={<ManageStock />} />
-            <Route path="manageUser" element={<ManageUser />} />
+          <Route path="/Admin" element={<DashBoardAdmin />}>
+            <Route path="Purchase-History" element={<PurchaseHistory />} />
+            <Route path="Create-Product" element={<CreateProduct />} />
+            <Route path="Products-To-Modify" element={<ProductsToModify />} />
+            <Route path="Products-To-Modify/:id" element={<EditedProduct />} />
+            <Route path="Manage-Stock" element={<ManageStock />} />
+            <Route path="Manage-User" element={<ManageUser />} />
           </Route>
           <Route path="/" element={<Home />} />
           <Route path="/Cart" element={<Cart />} />

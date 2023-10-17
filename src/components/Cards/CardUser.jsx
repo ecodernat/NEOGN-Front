@@ -52,14 +52,14 @@ const CardUser = ({
           {status ? (
             <button
               onClick={handleToggleStatus}
-              className="min-w-[80px] inline-flex px-4 py-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-[5px] hover:bg-green-600 hover:text-gray-100"
+              className="min-w-[80px] inline-flex px-4 py-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-[5px] hover:bg-red-600 hover:text-red-100"
             >
               Disabled
             </button>
           ) : (
             <button
               onClick={handleToggleStatus}
-              className="min-w-[80px] inline-flex px-4 py-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-[5px] hover:bg-red-600 hover:text-red-100"
+              className="min-w-[80px] inline-flex px-4 py-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-[5px] hover:bg-green-600 hover:text-gray-100"
             >
               Enabled
             </button>

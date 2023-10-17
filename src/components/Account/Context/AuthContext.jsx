@@ -28,13 +28,11 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const subscribed = onAuthStateChanged(auth, async (currentUser) => {
-      console.log(currentUser);
       if (!currentUser) {
         setUser("");
         setAuthReady(true);
         return;
       }
-      console.log(currentUser);
 
       try {
         const checkUserResponse = await axios.get(

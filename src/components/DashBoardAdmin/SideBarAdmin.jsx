@@ -38,7 +38,6 @@ const SideBarAdmin = () => {
               />
             </svg>
           </button>
-
           <div
             className={`${
               !open && "hidden"
@@ -80,8 +79,9 @@ const SideBarAdmin = () => {
               <ul className="space-y-2 px-4">
                 <li>
                   <NavLink
-                    to="purchaseHistory"
+                    to="Purchase-History"
                     className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    onClick={() => setOpen(false)}
                   >
                     <img
                       className="w-[30px] h-[30px]"
@@ -92,8 +92,9 @@ const SideBarAdmin = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="createProduct"
+                    to="Create-Product"
                     className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    onClick={() => setOpen(false)}
                   >
                     <img
                       className="w-[30px] h-[30px]"
@@ -104,8 +105,9 @@ const SideBarAdmin = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="productsToModify"
+                    to="Products-To-Modify"
                     className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    onClick={() => setOpen(false)}
                   >
                     <img
                       className="w-[30px] h-[30px]"
@@ -116,8 +118,9 @@ const SideBarAdmin = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="manageStock"
+                    to="Manage-Stock"
                     className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    onClick={() => setOpen(false)}
                   >
                     <img
                       className="w-[30px] h-[30px]"
@@ -128,8 +131,9 @@ const SideBarAdmin = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="manageUser"
+                    to="Manage-User"
                     className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    onClick={() => setOpen(false)}
                   >
                     <img
                       className="w-[30px] h-[30px]"
