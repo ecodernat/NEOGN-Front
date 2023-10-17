@@ -63,7 +63,9 @@ const Cart = () => {
               <hr className="my-2" />
               <div className="flex justify-between mb-2">
                 <span className="font-semibold">Total</span>
-                <span className="font-semibold">${cart.totalPrice}</span>
+                <span className="font-semibold">
+                  ${Number.parseFloat(cart.totalPrice).toFixed(2)}
+                </span>
               </div>
               {!showPaymentMethods && (
                 <button
