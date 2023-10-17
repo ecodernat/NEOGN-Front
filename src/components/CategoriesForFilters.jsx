@@ -2,25 +2,29 @@ import getFilter from "../redux/actions/getFilter";
 import {useDispatch} from "react-redux"
 import {useState} from "react"
 import { setCategory } from "../redux/slices/categorySlice";
+import Loading from "../views/Loading";
 
 const CategoriesFilter = () => {
+  const dispatch = useDispatch();
+  const [selectCategory, setSelectCategory] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-    const dispatch = useDispatch();
-    const [selectCategory, setSelectCategory]= useState('')
-     
-    const handleSelection = (category) =>{
-        
-        setSelectCategory(category)
-        
-        dispatch(setCategory({category:category}));
-        dispatch(getFilter({category:category}))
+  const handleSelection = async (category) => {
+    setIsLoading(true);
+    setSelectCategory(category);
+    try {
+      await dispatch(setCategory({ category: category }));
+      await dispatch(getFilter({ category: category }));
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error en la acción:", error);
+      setIsLoading(false);
     }
-
-
+  };
 
     return (
       <div className="w-auto ">
-
+      {isLoading && <Loading />}
         <div className="flex justify-center items-center">
           <button
             onClick={() => handleSelection("Monitors")}
