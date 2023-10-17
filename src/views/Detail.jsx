@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import fetchProductById from "../redux/actions/fetchProductById";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../redux/slices/CartSlice";
+import { clearDetail } from "../redux/slices/detailSlice";
 import heart from "../utils/images/AppbarIcons/DarkHeart.png";
 import backIcon from "../utils/images/BasicIcons/backIcon.png";
 import toast, { Toaster } from "react-hot-toast";
@@ -11,6 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 const Detail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const { id } = useParams();
 
   const goBackHandler = () => {
@@ -18,7 +20,6 @@ const Detail = () => {
   };
 
   const product = useSelector((state) => state.detail.detail);
-
   const enCar = useSelector((state) => {
     return state.cart;
   });
@@ -28,7 +29,10 @@ const Detail = () => {
   ).length;
 
   useEffect(() => {
-    dispatch(fetchProductById(id));
+    dispatch(fetchProductById(id))
+    return ()=>{
+      dispatch(clearDetail())
+    }
   }, [dispatch, id]);
 
   const handleAddToCart = () => {
@@ -44,6 +48,28 @@ const Detail = () => {
     console.log(productData);
     dispatch(addToCart(productData));
   };
+
+
+
+  const [currentImage, setCurrentImage] = useState("");
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handleClick = (newImage) => {
+    setSelectedImageIndex(newImage)
+    if(product.image_url[newImage]){
+      setCurrentImage(product.image_url[newImage])
+    }else{
+      setCurrentImage(product.image_url)
+    }
+    
+  }
+  useEffect(() => {
+
+    if (product.image_url) {
+      setCurrentImage(product.image_url[0] || ''); 
+    }
+  }, [product]);
+
 
   return (
     <div className="allHome flex flex-col w-auto h-auto  left-[15px] mt-[30px] mb-[140px] md:mb-[600px] lg:mb-[700px]">
@@ -64,40 +90,62 @@ const Detail = () => {
         </h1>
       </div>
 
-      <div className="flex flex-row justify-evenly pr-3 pl-3">
-        <div className="small images content flex flex-col w-1/4 md:w-1/5 lg:w-1/6 justify-evenly pr-3">
-          <div className="inline-flex bg-absolutestaticwhite-s rounded-[12px] border-[1.5px] border-solid border-primary-color">
-            <img
-              className="relative w-full h-full object-cover"
+      <div className="flex flex-row  justify-evenly pr-3 pl-3 h-[20rem] md:h-[30rem] lg:h-[34rem] xl:h-auto ">
+        <div className="small images overflow-hidden content flex flex-col w-1/3 md:w-1/5 lg:w-1/6 h-[20rem] md:h-[30rem] lg:h-[34rem] xl:h-auto justify-evenly pr-3">
+
+        <div className={`inline-flex justify-center h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[10rem] lg:w-[10rem] xl:h-auto bg-absolutestaticwhite-s rounded-[12px] p-1 ${selectedImageIndex === 1 ? 'border border-red-400' : 'border border-solid border-oil-03'}`}>
+            <button onClick={() => handleClick(1)} className={` `}
+            >
+               <img
+              className="w-full h-full object-center object-middle object-contain bg-cover bg-no-repeat "
               alt="small img"
-              src={product.image_url}
-            />
+              src={product.image_url && product.image_url[1] ? product.image_url[1] :currentImage }
+              />
+            </button>
+           
           </div>
-          <div className="inline-flex bg-absolutestaticwhite-s rounded-[12px] border border-solid border-oil-03">
-            <img
-              className="relative w-full h-full object-cover"
+
+          <div className={`inline-flex justify-center h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[10rem] lg:w-[10rem] xl:h-auto bg-absolutestaticwhite-s rounded-[12px] p-1 ${selectedImageIndex === 2 ? 'border border-red-400' : 'border border-solid border-oil-03'}`}>
+            <button onClick={() => handleClick(2)}
+            >
+               <img
+              className="w-full h-full object-center object-middle object-contain bg-cover bg-no-repeat "
               alt="small img"
-              src={product.image_url}
-            />
+              src={product.image_url && product.image_url[2] ? product.image_url[2] :currentImage }
+              />
+            </button>
+           
           </div>
-          <div className="inline-flex bg-absolutestaticwhite-s rounded-[12px] border border-solid border-oil-03">
-            <img
-              className="relative w-full h-full object-cover"
+
+          <div className={`inline-flex justify-center h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[10rem] lg:w-[10rem] xl:h-auto bg-absolutestaticwhite-s rounded-[12px] p-1 ${selectedImageIndex === 3 ? 'border border-red-400' : 'border border-solid border-oil-03'}`}>
+            <button onClick={() => handleClick(3)}
+            >
+               <img
+              className="w-full h-full object-center object-middle object-contain bg-cover bg-no-repeat "
               alt="small img"
-              src={product.image_url}
-            />
+              src={product.image_url && product.image_url[3] ? product.image_url[3] :currentImage }
+              />
+            </button>
+           
           </div>
-          <div className="flex bg-absolutestaticwhite-s rounded-[12px] border border-solid border-oil-03">
-            <img
-              className="relative w-full h-full object-cover"
+          <div className={`inline-flex justify-center h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[10rem] lg:w-[10rem] xl:h-auto bg-absolutestaticwhite-s rounded-[12px] p-1 ${selectedImageIndex === 0 ? 'border border-red-400' : 'border border-solid border-oil-03'}`}>
+            <button onClick={() => handleClick(0)}
+            >
+               <img
+              className="w-full h-full object-center object-middle object-contain bg-cover bg-no-repeat "
               alt="small img"
-              src={product.image_url}
-            />
+              src={product.image_url && product.image_url[0] ? product.image_url[0] :currentImage}
+              />
+            </button>
+           
           </div>
+          
+          
+          
         </div>
 
-        <div className="Big image flex bg-[#f6eaec] rounded-tl-[20px] rounded-bl-[20px] overflow-hidden relative !important">
-          <div className="absolute top-10 right-10">
+        <div className="Big image  flex bg-[#f6eaec] rounded-tl-[20px] rounded-bl-[20px] overflow-hidden relative  w-[30rem] md:w-[35rem] lg:w-[44rem] xl:w-auto">
+          <div className="absolute top-6 right-6">
             <div className="Wishlist-Heart inline-flex relative bg-absolutestaticwhite-s rounded-[10px] border border-solid">
               <div
                 className="bg-white rounded-[10px] overflow-hidden flex items-center justify-center"
@@ -112,15 +160,15 @@ const Detail = () => {
             </div>
           </div>
           <img
-            className="relative bg-cover bg-no-repeat"
-            src={product.image_url}
+            className="w-full h-full object-center object-middle object-contain bg-cover bg-no-repeat p-2"
+            src={currentImage}
           />
         </div>
       </div>
 
       <div className="2part flex flex-col justify-between relative pt-6 pl-[20px] pr-[20px] md:pl-15 md:pl-15 lg:pr-20 lg:pl-20">
         <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
-          <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto-Bold',Helvetica] font-bold text-oil-11 text-[24px] tracking-[0] leading-[normal] whitespace-nowrap">
+          <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto-Bold',Helvetica] font-bold text-oil-11 text-[24px] tracking-[0] leading-[normal] overflow-hidden">
             {`${product.name}`}
           </div>
           <div className="inline-flex items-center justify-center gap-[4px] px-[10px] py-[6px] relative flex-[0_0_auto] bg-absolutestaticwhite-s rounded-[10px] border border-solid border-oil-03">
@@ -130,7 +178,7 @@ const Detail = () => {
               src="https://i.postimg.cc/YCvVthCt/star-1-svgrepo-com.png"
             />
             <div className="relative w-fit mt-[-0.50px] [font-family:'Roboto-Medium',Helvetica] font-medium text-oil-11 text-[13px] tracking-[0] leading-[normal] whitespace-nowrap">
-              4.9
+              {product.averageRating}
             </div>
           </div>
         </div>
@@ -149,15 +197,32 @@ const Detail = () => {
                   alt="Document Icon"
                 />
               </div>
-              <div className="relative flex [font-family:'Roboto-Regular',Helvetica] font-normal text-oil-11 text-[16px] tracking-[0] leading-[normal] whitespace-nowrap">
-                Product Specifications
+              <div className="relative w-[300px] overflow-hidden [font-family:'Roboto-Regular',Helvetica] font-normal text-oil-11 text-[16px] tracking-[0] leading-[normal]">
+                 
+                <input type="checkbox" className="peer absolute top-0 inset-x-0 w-full h-12 opacity-0 z-10 cursor-pointer"/>
+                <div className=" h-12 w-full pl-5 flex items-center">
+                        <h1 className="">
+                          Product Specifications
+                          </h1>
+                </div>
+                <div className="absolute top-3 right-3  transition-transform duration-500 rotate-0 peer-checked:rotate-180">
+                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                   </svg>
+                </div>
+
+                <div className="content bg-gray-100 rounded-[12px] overflow-hidden transition-all duration-500 max-h-0 peer-checked:max-h-40">
+                  <div className="p-4">
+                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam quisquam id officia quam cumque fugiat. Delectus a error alias atque ratione esse voluptate beatae fugiat vitae, officia at ullam enim.</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <img
+            {/* <img
               src="https://i.postimg.cc/SxrvL3Nt/right-arrow-svgrepo-com.png"
               className="relative w-[24px] h-[24px]"
               alt="Right Arrow"
-            />
+            /> */}
           </div>
           <img className="relative h-px bg-gray-300 w-full" />
           <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
@@ -174,10 +239,11 @@ const Detail = () => {
               </div>
             </div>
 
-            <div className="inline-flex items-start gap-[8px] relative flex-[0_0_auto]">
-              <div className="bg-oil-08 border-primary-color relative w-[24px] h-[24px] rounded-[12px] border-2 border-solid" />
-              <div className="bg-oil-04 border-oil-03 relative w-[24px] h-[24px] rounded-[12px] border-2 border-solid" />
-              <div className="bg-absolutestaticwhite-s border-oil-03 relative w-[24px] h-[24px] rounded-[12px] border-2 border-solid" />
+            <div className="inline-flex items-start  gap-[8px] relative flex-[0_0_auto]">
+              <div className={`bg-oil-08 bg-red-100 ${product.color == 'Red' ? 'border-red-700 bg-red-800' : 'border-oil-03'} border-primary-color  relative w-[24px] h-[24px] rounded-[12px] border-2 border-solid`} />
+              <div className={`bg-oil-0 bg-gray-100 ${product.color == 'Black' ? 'border-red-700 bg-gray-800' : 'border-oil-03'} relative w-[24px] h-[24px] rounded-[12px] border-2 border-solid`} />
+
+              <div className={`bg-absolutestaticwhite-s border-oil-03 ${product.color == 'White' ? 'border-red-700 bg-white' : 'border-oil-03'} relative w-[24px] h-[24px] rounded-[12px] border-2 border-solid`} />
             </div>
           </div>
           <img className="relative h-px bg-gray-300 w-full" />
