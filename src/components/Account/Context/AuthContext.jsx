@@ -46,10 +46,10 @@ export function AuthProvider({ children }) {
           setAuthReady(true);
         }
       } catch (error) {
-        const createUserResponse = await axios.post("/api/users/signUp", {
+        const createUserResponse = await axios.post("/api/users/signup", {
           clientId: currentUser.uid,
           email: currentUser.email,
-          photo: currentUser.photoURL,
+          photo_url: currentUser.photoURL,
           name: currentUser.displayName,
         });
 
@@ -76,21 +76,7 @@ export function AuthProvider({ children }) {
 
       toast.success("Successful Registration");
 
-      const userData = {
-        clientId: firebaseUser.uid,
-        name: firebaseUser.displayName,
-        email: firebaseUser.email,
-        photo: firebaseUser.photoURL,
-      };
-
-      const createUserResponse = await axios.post(
-        "/api/users/signUp",
-        userData
-      );
-
-      if (createUserResponse.status === 200) {
-        setUser(firebaseUser);
-      }
+      setUser(firebaseUser);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         toast.error(

@@ -37,7 +37,6 @@ const ManageUser = () => {
   };
 
   const toggleStatus = async (userId, newStatus) => {
-    console.log(userId);
     try {
       await axios.put(`/api/users/update/${userId}`, {
         isDisable: newStatus,
@@ -82,22 +81,19 @@ const ManageUser = () => {
                     </th>
                   </tr>
                 </thead>
-                {allUsers
-                  ?.slice()
-                  .sort((a, b) => a.name.localeCompare(b.name)) // Ordenar por nombres
-                  .map((el) => (
-                    <CardUser
-                      key={el.id}
-                      id={el.id}
-                      toggleStatus={toggleStatus}
-                      toggleAdminStatus={toggleAdminStatus}
-                      name={el.name}
-                      email={el.email}
-                      image={el.photo_url}
-                      isAdmin={el.isAdmin}
-                      isDisable={el.isDisable}
-                    />
-                  ))}
+                {allUsers?.map((el) => (
+                  <CardUser
+                    key={el.id}
+                    id={el.id}
+                    toggleStatus={toggleStatus}
+                    toggleAdminStatus={toggleAdminStatus}
+                    name={el.name}
+                    email={el.email}
+                    image={el.photo_url}
+                    isAdmin={el.isAdmin}
+                    isDisable={el.isDisable}
+                  />
+                ))}
               </table>
             </div>
           </div>

@@ -5,28 +5,26 @@ import fetchProducts from "../redux/actions/getProducts";
 import HomeCard from "../components/Cards/HomeCard";
 import Slider from "../components/Home/Slider";
 import TopCategories from "../components/Home/TopCategories";
-import getFilter from "../redux/actions/getFilter";
-import Loading from "./Loading";
+import getFilter from '../redux/actions/getFilter';
+import Loading from "./Loading"; 
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); 
   let products = useSelector((state) => state.products.products);
   let productFiltered = useSelector((state) => state.filter);
   products = products.slice(0, 4);
-  let filtradolo =
-    Array.isArray(productFiltered.filterResult.results) &&
-    productFiltered.filterResult.results.length > 0
-      ? productFiltered.filterResult.results.slice(0, 4)
-      : [];
+  let filtradolo = productFiltered.filterResult.results ? productFiltered.filterResult.results.slice(0, 4) : [];
+
+      console.log(filtradolo)
 
   useEffect(() => {
-    // Simula una carga de datos con un retraso de 1.5 segundos
-    const fetchData = () => {
-      dispatch(fetchProducts());
-      dispatch(getFilter({ category: "Monitors" }));
-      dispatch(getFilter({ order: "Oldest" }));
-      setIsLoading(false); // Establece isLoading en false después de cargar los datos
+  
+    const fetchData = async () => {
+      await dispatch(fetchProducts());
+      await dispatch(getFilter({ category: 'Monitors' }));
+      await dispatch(getFilter({ order: 'Oldest' }));
+      setIsLoading(false); 
     };
 
     fetchData();
@@ -34,7 +32,7 @@ const Home = () => {
 
   return (
     <div className="h-full pb-32">
-      {isLoading && <Loading />}
+      {isLoading && <Loading />} 
       <div className="h-auto mx-10 mt-10 w-auto">
         <Slider />
       </div>
@@ -56,15 +54,9 @@ const Home = () => {
         <p className="text-red-500 text-[10px] font-semibold">SEE ALL</p>
       </div>
       <div className="w-full flex justify-center items-center">
-        <div className="w-auto h-auto grid grid-cols-2 gap-4">
+        <div className="w-auto h-auto grid grid-cols-2 gap-4 ">
           {filtradolo.map((product, i) => (
-            <HomeCard
-              key={i}
-              image={product.image_url[0]}
-              id={product.id}
-              price={product.price}
-              name={product.name}
-            />
+            <HomeCard key={i} image={product.image_url[0]} id={product.id} price={product.price} name={product.name} />
           ))}
         </div>
       </div>

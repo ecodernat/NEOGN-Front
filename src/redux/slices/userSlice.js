@@ -7,7 +7,7 @@ const initialState = {
   email: null,
   photo: null,
   address: null,
-  wishlist: null,
+  wishlist: [],
   isDisable: false,
   isAdmin: false,
 };
@@ -36,11 +36,24 @@ const userSlice = createSlice({
         ...(email ? { email } : {}),
         ...(photo ? { photo } : {}),
         ...(address ? { address } : {}),
-        ...(wishlist ? { wishlist } : {}),
+        ...(wishlist ? { wishlist } : []),
         ...(isDisable ? { isDisable } : {}),
         ...(isAdmin ? { isAdmin } : {}),
       };
     },
+    addToWishlist(state, action) {
+      const { id } = action.payload;
+      if (!state.wishlist.find((product) => product.id === id)) {
+        state.wishlist.push(action.payload);
+      }
+    },
+
+    removeFromWishlist: (state, action) => {
+      const { id } = action.payload;
+
+      state.wishlist = state.wishlist.filter((product) => product.id !== id);
+    },
+
     clearUser(state) {
       return {
         ...state,
@@ -50,7 +63,7 @@ const userSlice = createSlice({
         email: null,
         photo: null,
         address: null,
-        wishlist: null,
+        wishlist: [],
         isDisable: false,
         isAdmin: false,
       };
@@ -58,5 +71,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { getUser, clearUser } = userSlice.actions;
+export const { getUser, removeFromWishlist, addToWishlist, clearUser } =
+  userSlice.actions;
 export default userSlice.reducer;

@@ -5,10 +5,8 @@ const CardProduct = ({ title, image_url, toggleStatus, isAvailable, id }) => {
   const [status, setStatus] = useState(isAvailable);
 
   const handleToggleStatus = () => {
-    console.log(id);
     const newStatus = !status;
     setStatus(newStatus);
-    console.log(newStatus);
     toggleStatus(id, newStatus);
   };
   return (
@@ -20,7 +18,7 @@ const CardProduct = ({ title, image_url, toggleStatus, isAvailable, id }) => {
         <img className="w-auto rounded-[9px] " src={image_url} />
       </div>
       <div className="w-full h-auto flex justify-center items-center gap-4">
-        <Link to={`/admin/productsTomodify/${id}`}>
+        <Link to={`/Admin/Products-To-Modify/${id}`}>
           <button className="px-4 py-1 min-w-[80px] bg-neutral-800 rounded-[7px] justify-center items-center inline-flex text-white font-semibold hover:text-white hover:bg-blue-500">
             Edit
           </button>

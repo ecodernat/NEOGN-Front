@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 import { store, persistor } from "./redux/store.js";
-
+import { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 //Descomentar la ruta a la API en la que se desea realizar la peticion y comentar el que no se utilizará
@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <PersistGate loading={null} persistor={persistor}>
       <React.StrictMode>
         <Router>
-          <App />
+          <App /> <Toaster />
         </Router>
       </React.StrictMode>
     </PersistGate>
