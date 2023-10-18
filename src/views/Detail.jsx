@@ -7,11 +7,13 @@ import { addToCart } from "../redux/slices/CartSlice";
 import heart from "../utils/images/AppbarIcons/DarkHeart.png";
 import backIcon from "../utils/images/BasicIcons/backIcon.png";
 import toast, { Toaster } from "react-hot-toast";
+import Loading from "./Loading";
 
 const Detail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
 
   const goBackHandler = () => {
     navigate(-1);
@@ -44,6 +46,9 @@ const Detail = () => {
     console.log(productData);
     dispatch(addToCart(productData));
   };
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className="allHome flex flex-col w-auto h-auto  left-[15px] mt-[30px] mb-[140px] md:mb-[600px] lg:mb-[700px]">
@@ -197,7 +202,7 @@ const Detail = () => {
             className="flex w-[200px] items-center justify-center gap-[4px] p-[12px] relative rounded-[15px]"
             onClick={handleAddToCart}
           >
-            <div className="relative w-fit [font-family:'Roboto-Medium',Helvetica] font-medium text-absolutestaticwhite-s text-[18px] tracking-[0] leading-[normal] whitespace-nowrap">
+            <div className="relative w-fit [font-family:'Roboto-Medium',Helvetica] text-white font-bold font-medium text-absolutestaticwhite-s text-[18px] tracking-[0] leading-[normal] whitespace-nowrap ">
               Add To Cart ({productInCartCount})
             </div>
           </button>
