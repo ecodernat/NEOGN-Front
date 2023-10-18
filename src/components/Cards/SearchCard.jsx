@@ -53,19 +53,19 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
   ) : description;
 
   return (
-    <div className="bg-red p-3 rounded-lg shadow-lg mb-4 rounded-md md:rounded-lg mx-1 md:mx-0 border border-red max-w-screen-xl">
+    <div className="flex flex-col items-center bg-red p-3 rounded-lg shadow-lg mb-2 rounded-md md:rounded-lg mx-2 md:mx-2 border-red max-w-screen-xl">
       <div className="flex flex-row md:flex-row ">
         <Link to={`/${id}`} className="md:w-1/3">
           <img
             src={image}
             alt={name}
             className="w-full h-auto object-cover rounded-lg text-center"
-            style={{ maxHeight: "140px", background: "#fceaea", padding: "4px" }}
+            style={{ maxHeight: "120px", background: "#fceaea", padding: "1px", marginRight: "10px" }}
           />
         </Link>
         <div className="md:w-2/3 md:pl-2 flex flex-col">
           <div className="flex justify-between items-start mb-4">
-          <div className="text-gray-800 text-lg font-semibold" style={{ marginLeft: "22px" }}>{name}</div>
+          <div className="text-gray-800 text-lg font-semibold overflow-hidden " style={{ marginLeft: "10px" }}>{name}</div>
 
             <img
               src={Heart}
@@ -75,7 +75,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
               onClick={handleToggleWishlist}
             />
           </div>
-          <div className="text-gray-600 text-xs mb-2 text-center" style={{ fontFamily: "Roboto" }}>{descriptionText}</div>
+          <div className="text-gray-600 text-sm mb-5 " style={{ fontFamily: "Roboto", marginLeft: "10px" }}>{descriptionText}</div>
           {description.length > 31 && (
             <div className="flex items-center justify-center    ">
               <Link to={`/${id}`} className="text-red-600 text-xs cursor-pointer hover:underline hover:bg-transparent mr-2">
