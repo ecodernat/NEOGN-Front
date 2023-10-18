@@ -213,7 +213,7 @@ const Detail = () => {
 
                 <div className="content bg-gray-100 rounded-[12px] overflow-hidden transition-all duration-500 max-h-0 peer-checked:max-h-40">
                   <div className="p-4">
-                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam quisquam id officia quam cumque fugiat. Delectus a error alias atque ratione esse voluptate beatae fugiat vitae, officia at ullam enim.</p>
+                      <p>{product.description}</p>
                   </div>
                 </div>
               </div>
@@ -259,12 +259,13 @@ const Detail = () => {
             </p>
           </div>
           <button
-            style={{ backgroundColor: "rgba(229, 70, 96, 1)" }}
+            style={{ backgroundColor: "#E54660" }}
             className="flex w-[200px] items-center justify-center gap-[4px] p-[12px] relative rounded-[15px]"
             onClick={handleAddToCart}
           >
             <div className="relative w-fit [font-family:'Roboto-Medium',Helvetica] font-medium text-absolutestaticwhite-s text-[18px] tracking-[0] leading-[normal] whitespace-nowrap">
-              Add To Cart ({productInCartCount})
+              Add to Cart
+              {/* ({productInCartCount}) */}
             </div>
           </button>
         </div>
