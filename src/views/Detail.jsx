@@ -29,10 +29,14 @@ const Detail = () => {
     return state.cart;
   });
 
-  const productInCartCount =
-    Array.isArray(enCar.items) && enCar.items.length > 0
-      ? enCar.items.filter((item) => item.id === id)[0].quantity
-      : 0;
+  const productInCartCount = () => {
+    if (Array.isArray(enCar.items) && enCar.items.length > 0) {
+      let count = enCar.items.filter((item) => item.id === id)[0];
+      let countNum = count ? count.quantity : 0;
+      return countNum;
+    }
+    return 0;
+  };
 
   useEffect(() => {
     dispatch(fetchProductById(id));
@@ -367,7 +371,7 @@ const Detail = () => {
             onClick={handleAddToCart}
           >
             <div className="relative w-fit [font-family:'Roboto-Medium',Helvetica] font-medium text-absolutestaticwhite-s text-[18px] tracking-[0] leading-[normal] whitespace-nowrap">
-              Add To Cart ({productInCartCount})
+              Add To Cart ({productInCartCount()})
             </div>
           </button>
         </div>
