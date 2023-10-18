@@ -358,7 +358,7 @@ const Detail = () => {
               <span className="[font-family:'Roboto-Medium',Helvetica] font-medium text-[#0d0d0d] text-[24px] tracking-[0]">
                 {`$${product.price}`}
               </span>
-              <span className="text-[18px]">99</span>
+              {/* <span className="text-[18px]">99</span> */}
             </p>
           </div>
           <button
