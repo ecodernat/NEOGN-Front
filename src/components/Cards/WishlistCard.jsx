@@ -5,10 +5,14 @@ import Heart from "../../utils/images/AppbarIcons/IconoDelete.gif";
 
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromWishlist } from "../../redux/slices/WishlistSlice";
+import { addToCart } from "../../redux/slices/CartSlice";
+import  toast  from "react-hot-toast";
 
-const WishlistCard = ({ id, name, image, price, description,isInWishlist,toggleWishlist  }) => {
+
+
+const WishlistCard = ({ id, name, image, price, description, isInWishlist, toggleWishlist  }) => {
+  
   const dispatch = useDispatch();
-
   const [showFullDescription, setShowFullDescription] = useState(false);
 
 
@@ -27,29 +31,41 @@ const WishlistCard = ({ id, name, image, price, description,isInWishlist,toggleW
     setShowFullDescription(!showFullDescription);
   };
 
-  const displayDescription = showFullDescription
-    ? description
-    : description.slice(0, 81);
+  const handleAddToCart = () => {
+    const productData = {
+      id,
+      name,
+      price,
+      image,
+      description,
+    };
+    toast.success("Added to cart successfully ");
+
+    console.log(productData);
+    dispatch(addToCart(productData));
+  };
+
+  const descriptionText = description.length > 31 ? (
+    showFullDescription ? description : `${description.slice(0, 31)} ...`
+  ) : description;
+
 
   return (
-    <div className="bg-red p-3 rounded-lg shadow-lg mb-4 rounded-md md:rounded-lg mx-2 md:mx-0 border border-red max-w-screen-xl">
+    <div className="bg-red p-3 rounded-lg shadow-lg mb-4 rounded-md md:rounded-lg mx-1 md:mx-0 border border-red max-w-screen-xl">
       <div className="flex flex-row md:flex-row">
-        <Link to={`/${id}`}>
-          <div className="md:w-1/4 bg-red">
+        <Link to={`/${id}`} className="md:w-1/3" >
             <img
               src={image}
               alt={name}
-              className="w-full h-auto object-cover rounded-lg bg-red"
-              style={{
-                maxHeight: "800px",
-                width: "100%",
-              }}
+              className="w-full h-auto object-cover rounded-lg text-center"
+              style={{ maxHeight: "140px", background: "#fceaea", padding: "4px" }}
             />
-          </div>
+          
         </Link>
-        <div className="md:w-3/4 md:pl-4 flex flex-col">
-          <div className="flex justify-between items-start">
-            <div className="text-gray-800 text-lg font-semibold">{name}</div>
+        
+        <div className="md:w-2/3 md:pl-2 flex flex-col">
+          <div className="flex justify-between items-start  mb-4">
+            <div className="text-gray-800 text-lg font-semibold" style={{ marginLeft: "22px" }} >{name}</div>
             <img
               src={Heart}
               className={`w-5 h-5 md:w-auto md:h-auto object-cover rounded-lg cursor-pointer ${
@@ -58,18 +74,18 @@ const WishlistCard = ({ id, name, image, price, description,isInWishlist,toggleW
               onClick={() => removeCard(id)}
             />
           </div>
-          <div className="text-gray-600 text-sm mt-2">{displayDescription}</div>
-          {description.length > 81 && (
-            <button
-              onClick={toggleDescription}
-              className="text-red-600 text-sm mt-2 cursor-pointer"
-            >
-              {showFullDescription ? "Mostrar menos" : "..."}
-            </button>
+          <Link to={`/${id}`} >
+          <div className="text-gray-600 text-sm mt-2" style={{ fontFamily: "Roboto" }}>{descriptionText}</div>
+          {description.length > 31 && (
+            <div className="flex items-center justify-center">
+              
+          </div>
           )}
-          <div className="price py-1 text-red-600 text-lg font-semibold flex flex-row items-center justify-between mt-auto">
-            <div>$ {price}</div>
-            <button className="button bg-red-500 text-white text-lg px-3 py-1 rounded-md">
+          </Link>
+          <div className="flex items-center justify-between mt-auto">
+          <div className="text-red-600 text-lg font-semibold" style={{ marginLeft: "12px" }}>$ {price}</div>
+            <button onClick={handleAddToCart} 
+              className="button bg-red-500 text-white text-lg px-3 py-1 rounded-md">
               Buy
             </button>
           </div>

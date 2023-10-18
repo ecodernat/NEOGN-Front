@@ -15,8 +15,7 @@ const Home = () => {
   let productFiltered = useSelector((state) => state.filter);
   products = products.slice(0, 4);
   let filtradolo = productFiltered.filterResult.results ? productFiltered.filterResult.results.slice(0, 4) : [];
-
-      console.log(filtradolo)
+  
 
   useEffect(() => {
   
