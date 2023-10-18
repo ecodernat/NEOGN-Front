@@ -65,8 +65,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
         </Link>
         <div className="md:w-2/3 md:pl-2 flex flex-col">
           <div className="flex justify-between items-start mb-4">
-          <div className="text-gray-800 text-lg font-semibold" style={{ marginLeft: "22px" }}>{name}</div>
-
+            <div className="text-gray-800 text-lg font-semibold" style={{ marginLeft: "22px" }}>{name}</div>
             <img
               src={Heart}
               className={`w-5 h-5 md:w-auto md:h-36 object-cover rounded-lg cursor-pointer ${
