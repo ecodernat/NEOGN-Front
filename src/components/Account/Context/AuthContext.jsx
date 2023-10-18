@@ -34,6 +34,7 @@ export function AuthProvider({ children }) {
         setAuthReady(true);
         return;
       }
+      console.log(currentUser);
 
       try {
         const checkUserResponse = await axios.get(
@@ -75,21 +76,7 @@ export function AuthProvider({ children }) {
 
       toast.success("Successful Registration");
 
-      const userData = {
-        clientId: firebaseUser.uid,
-        name: firebaseUser.displayName,
-        email: firebaseUser.email,
-        photo: firebaseUser.photoURL,
-      };
-
-      const createUserResponse = await axios.post(
-        "/api/users/signUp",
-        userData
-      );
-
-      if (createUserResponse.status === 200) {
-        setUser(firebaseUser);
-      }
+      setUser(firebaseUser);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         toast.error(

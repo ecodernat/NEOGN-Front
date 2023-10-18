@@ -3,7 +3,6 @@ import { useAuth } from "./Context/AuthContext";
 import NEOGN from "../../utils/images/Logo/NEOGN.png";
 import TitleSection from "../TitleSection";
 import { useNavigate } from "react-router-dom";
-import { Toaster } from 'react-hot-toast';
 
 function SignUp() {
   const auth = useAuth();
@@ -12,20 +11,36 @@ function SignUp() {
   const [emailRegister, setEmailRegister] = useState("");
   const [passwordRegister, setPasswordRegister] = useState("");
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
-
+  const [timeoutId, setTimeoutId] = useState(null);
 
   useEffect(() => {
     if (isUserAuthenticated) {
+      const delay = 2000;
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      const newTimeoutId = setTimeout(() => {
         navigate("/Account");
+      }, delay);
+      setTimeoutId(newTimeoutId);
+      return () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+      };
     }
-  }, [isUserAuthenticated, history]);
+  }, [isUserAuthenticated]);
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsUserAuthenticated(true);
+
     try {
       await auth.register(emailRegister, passwordRegister);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsUserAuthenticated(false);
     }
   };
 
@@ -93,6 +108,7 @@ function SignUp() {
               <div className="w-full h-auto pt-10 pb-8">
                 <button
                   onClick={(e) => handleRegister(e)}
+                  disabled={isUserAuthenticated}
                   className="w-full text-white bg-heroColor hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-red-400 font-medium rounded-full text-base px-5 py-[15px] text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Create an account
@@ -177,7 +193,6 @@ function SignUp() {
           </div>
         </div>
       </div>
-      <Toaster/>
     </section>
   );
 }

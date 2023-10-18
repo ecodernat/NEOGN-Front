@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <PersistGate loading={null} persistor={persistor}>
       <React.StrictMode>
         <Router>
-          <App /> <Toaster/>
+          <App /> <Toaster />
         </Router>
       </React.StrictMode>
     </PersistGate>
