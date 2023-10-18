@@ -9,16 +9,20 @@ import heart from "../utils/images/AppbarIcons/DarkHeart.png";
 import activeHeart from "../utils/images/AppbarIcons/ActiveHeart.png";
 import backIcon from "../utils/images/BasicIcons/backIcon.png";
 import toast, { Toaster } from "react-hot-toast";
+
+//import Loading from "./Loading";
 import {
   addToWishlist,
   removeFromWishlist,
 } from "../redux/slices/WishlistSlice";
+
 
 const Detail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { id } = useParams();
+  //const [isLoading, setIsLoading] = useState(true);
 
   const goBackHandler = () => {
     navigate(-1);

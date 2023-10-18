@@ -23,14 +23,14 @@ const Categories = () => {
   };
 
   return (
-    <div className="px-4 pt-2" style={{ height: "500px", overflowY: "scroll" }}>
-      <div className="flex flex-row gap-3 mb-8 items-center font-general-sans">
+    <div className="px-4 pt-2" style={{ height: "600px", overflowY: "scroll" }}>
+      <div className="flex flex-row gap-3  mb-4 items-center font-general-sans">
         <Link to={"/search"}>
           <img src={Back} className="w-8 h-8" alt="Back" />
         </Link>
         <p className="font-general-sans">Categories</p>
       </div>
-      <div className="grid grid-cols-2 gap-8 p-4 m-6">
+      <div className="grid grid-cols-2 gap-6 p-3 m-3">
         {[
           { image: Monitors, name: "Monitors" },
           { image: Headsets, name: "Headsets" },
