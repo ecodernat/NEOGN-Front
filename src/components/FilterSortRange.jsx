@@ -88,7 +88,7 @@ export const FilterSortRange = () => {
               onClick={() => handleSortOrderChange("rating")}
               className="border-colors-grey-dark-1 h-[39px] flex-[0_0_auto] border border-solid px-[15px] py-[20px] inline-flex bg-white w-[unset] mt-[-11.50px] text-black text-[14px] mb-[-9.50px] font-normal rounded-md  items-center justify-center focus:bg-[#e54660]"
             >
-              Review
+              Rating
             </button>
           </div>
         </div>
