@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import fetchProductById from "../redux/actions/fetchProductById";
@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { addToCart } from "../redux/slices/CartSlice";
 import { clearDetail } from "../redux/slices/detailSlice";
 import heart from "../utils/images/AppbarIcons/DarkHeart.png";
+import activeHeart from '../utils/images/AppbarIcons/ActiveHeart.png'
 import backIcon from "../utils/images/BasicIcons/backIcon.png";
 import toast, { Toaster } from "react-hot-toast";
+import { addToWishlist, removeFromWishlist } from "../redux/slices/WishlistSlice";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -20,9 +22,7 @@ const Detail = () => {
   };
 
   const product = useSelector((state) => state.detail.detail);
-  const enCar = useSelector((state) => {
-    return state.cart;
-  });
+  const enCar = useSelector((state) => {return state.cart;});
 
   const productInCartCount = enCar.items.filter(
     (item) => item.id === product.id
@@ -69,6 +69,42 @@ const Detail = () => {
       setCurrentImage(product.image_url[0] || ''); 
     }
   }, [product]);
+
+
+  const wishlist = useSelector((state)=>state.wishlist)
+  const loginState = useSelector((state)=> state.login)
+  const [isAdded, setIsAdded] = useState(false);
+  
+  useEffect(() => {
+    const existingProduct = wishlist.find((product) => product.id === id);
+    setIsAdded(existingProduct ? true : false);
+    dispatch(fetchProductById(id));
+  }, [wishlist,dispatch, id]);
+  
+  const toggleWishlist = () => {
+    const existingProduct = wishlist.find((product) => product.id === id);
+    if (existingProduct) {
+      dispatch(removeFromWishlist({ id }));
+    } else {
+      const productData = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image_url,
+        description: product.description,
+      };
+      dispatch(addToWishlist(productData));
+    }
+  };
+  
+  const handleToggleWishlist = () => {
+    if (!loginState.login) {
+      return navigate("/Account");
+    }    
+    toggleWishlist(id);
+    setIsAdded(!isAdded);
+    
+  };
 
 
   return (
@@ -146,16 +182,21 @@ const Detail = () => {
 
         <div className="Big image  flex bg-[#f6eaec] rounded-tl-[20px] rounded-bl-[20px] overflow-hidden relative  w-[30rem] md:w-[35rem] lg:w-[44rem] xl:w-auto">
           <div className="absolute top-6 right-6">
-            <div className="Wishlist-Heart inline-flex relative bg-absolutestaticwhite-s rounded-[10px] border border-solid">
+            <div className="Wishlist-Heart inline-flex relative bg-absolutestaticwhite-s rounded-[10px] border border-solid"
+            style={{zIndex: 1}}>
               <div
                 className="bg-white rounded-[10px] overflow-hidden flex items-center justify-center"
                 style={{ width: "34px", height: "34px" }}
               >
-                <img
-                  src={heart}
-                  className="relative w-[24px] h-[24px] "
-                  alt="Small Image"
-                />
+               {<img 
+                    src={ isAdded ? activeHeart: heart}
+                    className={`w-5 h-5 md:w-auto md:h-auto object-cover rounded-lg cursor-pointer ${
+                      isAdded ? "text-red-500" : "text-gray-500"
+                    }`}
+                    onClick={handleToggleWishlist}
+                    
+                  />}
+
               </div>
             </div>
           </div>

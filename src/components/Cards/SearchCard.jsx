@@ -1,25 +1,51 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Heart from "../../utils/images/AppbarIcons/DarkHeart.png";
-import { addToWishlist, removeFromWishlist } from "../../redux/slices/WishlistSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import  toast  from "react-hot-toast";
 import { addToCart } from "../../redux/slices/CartSlice";
+import { addToWishlist, removeFromWishlist } from "../../redux/slices/WishlistSlice";
+import Heart from "../../utils/images/AppbarIcons/DarkHeart.png";
+import activeHeart from '../../utils/images/AppbarIcons/ActiveHeart.png'
 
 const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
   const dispatch = useDispatch();
   const [isAdded, setIsAdded] = useState(false);
   const wishlist = useSelector((state) => state.wishlist);
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const loginState = useSelector((state)=> state.login)
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+   
+    const existingProduct = wishlist.find((product) => product.id === id);
+    setIsAdded(existingProduct ? true : false);
+  }, [wishlist, id]);
 
+
+  
+  
   const toggleWishlist = () => {
     const existingProduct = wishlist.find((product) => product.id === id);
-    if (isInWishlist && existingProduct) {
+    if (existingProduct) {
       dispatch(removeFromWishlist({ id }));
     } else {
       dispatch(addToWishlist({ id, name, image, price, description }));
     }
   };
+
+  const handleToggleWishlist = () => {
+    
+    if (!loginState.login) {
+      return navigate("/Account");
+    }    
+    toggleWishlist(id);    
+    setIsAdded(!isAdded);
+    
+  };
+
+
+
+
   const handleAddToCart = () => {
     const productData = {
       id,
@@ -35,17 +61,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
   };
 
 
-  const handleToggleWishlist = () => {
-    const existingProduct = wishlist.find((product) => product.id === id);
-
-    if (isAdded && existingProduct) {
-      alert('This item is already on the wishlist.');
-      return;
-    }
-    toggleWishlist(id);
-    setIsAdded(true);
-    alert('Added to Wishlist');
-  };
+  
 
   const displayDescription = showFullDescription ? description : description.slice(0, 31);
   const descriptionText = description.length > 31 ? (
@@ -67,7 +83,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
           <div className="flex justify-between items-start mb-4">
             <div className="text-gray-800 text-lg font-semibold" style={{ marginLeft: "22px" }}>{name}</div>
             <img
-              src={Heart}
+              src={ isAdded ? activeHeart: Heart}
               className={`w-5 h-5 md:w-auto md:h-36 object-cover rounded-lg cursor-pointer ${
                 isAdded ? "text-red-500" : "text-gray-700"
               }`}
