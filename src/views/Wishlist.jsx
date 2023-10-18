@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Back from "../utils/images/BasicIcons/backIcon.png";
 import { removeFromWishlist } from "../redux/slices/WishlistSlice";
 import WishlistCard from "../components/Cards/WishlistCard";
+import wishIconPrev from "../../src/utils/images/Logo/WishIconPrev.png"
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,12 @@ const Wishlist = () => {
               />
             ))
           ) : (
-            <p>You still do not have products on Wishlist.</p>
+
+            <div >
+            <img className="flex items-center justify-center" src={wishIconPrev} alt="No products" />
+            <p className="text-red-600 text-lg font-semibold" style={{ marginLeft: "12px" }}> You still do not have products on Wishlist. </p>
+          </div>       
+          
           )}
         </div>
       </div>

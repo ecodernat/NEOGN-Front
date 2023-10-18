@@ -92,7 +92,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
           </div>
           <div className="text-gray-600 text-xs mb-2 text-center" style={{ fontFamily: "Roboto" }}>{descriptionText}</div>
           {description.length > 31 && (
-            <div className="flex items-center justify-center    ">
+            <div className="flex items-center justify-center">
               <Link to={`/${id}`} className="text-red-600 text-xs cursor-pointer hover:underline hover:bg-transparent mr-2">
                 
               </Link>
