@@ -162,7 +162,7 @@ const CreateProduct = () => {
       price: 0,
       discount: 0,
     });
-    history("/admin/createProduct");
+    history("/Admin/createProduct");
   }
 
   return (
