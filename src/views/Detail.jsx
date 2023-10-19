@@ -80,7 +80,7 @@ const Detail = () => {
   }, [product]);
 
   const wishlist = useSelector((state) => state.wishlist);
-  const loginState = useSelector((state) => state.login);
+  const user = useSelector((state) => state.user);
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
