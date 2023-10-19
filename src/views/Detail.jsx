@@ -9,12 +9,7 @@ import heart from "../utils/images/AppbarIcons/DarkHeart.png";
 import activeHeart from "../utils/images/AppbarIcons/ActiveHeart.png";
 import backIcon from "../utils/images/BasicIcons/backIcon.png";
 import toast, { Toaster } from "react-hot-toast";
-
-//import Loading from "./Loading";
-import {
-  addToWishlist,
-  removeFromWishlist,
-} from "../redux/slices/WishlistSlice";
+import { addToWishlist, removeFromWishlist } from "../redux/slices/userSlice";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -78,8 +73,9 @@ const Detail = () => {
     }
   }, [product]);
 
-  const wishlist = useSelector((state) => state.wishlist);
-  const loginState = useSelector((state) => state.login);
+  const user = useSelector((state)=> state.user)
+  const wishlist = user.wishlist
+  const loginState = useSelector((state)=> state.login)
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
@@ -105,11 +101,14 @@ const Detail = () => {
   };
 
   const handleToggleWishlist = () => {
-    if (!loginState.login) {
+    console.log("user wish", wishlist)
+    if (!user.id) {
       return navigate("/Account");
     }
     toggleWishlist(id);
     setIsAdded(!isAdded);
+    console.log("user wish", wishlist)
+    
   };
 
   return (

@@ -6,7 +6,7 @@ import imagePaths from "./imagePaths";
 const AppBar = ({ theme }) => {
   const location = useLocation();
   const currentPath = location.pathname;
-  const stateLogin = useSelector ((state)=>state.login)
+  
   return (
     <div
       className={`font-general-sans w-full h-[80px] justify-around items-center inline-flex ${
@@ -106,7 +106,7 @@ const AppBar = ({ theme }) => {
             </div>
           </div>
         </Link>
-      { stateLogin.login && <Link to="/Wishlist">
+      { <Link to="/Wishlist">
           <div className="flex-col justify-start items-center inline-flex">
             <img
               alt="Wishlist"
