@@ -44,6 +44,11 @@ const Search = () => {
   function isEmpty(obj) {
     return Object.keys(obj).length === 0;
   }
+  useEffect(() => {
+    // carga por default los monitores
+    if(!productFiltered.filterResult.results)
+    dispatch(getFilter({ category: "Monitors" }));
+  }, []);
 
   return (
     <div className="h-full pb-32">
