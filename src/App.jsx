@@ -99,7 +99,7 @@ const App = () => {
           />
           <Route path="/Account/SignUp" element={<SignUp />} />
           {/* Dashboard User */}
-          <Route path="/Account/EditProfile" element={<EditProfile />} />
+          <Route path="/Account/Edit-Profile" element={<EditProfile />} />
           <Route path="/Account/Orders" element={<OrderHistory />} />
           <Route path="/Account/Orders/:id" element={<OrderDetails />} />
           <Route path="/Account/Wishlist" element={<WishlistAccount />} />
