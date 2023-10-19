@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { AiFillFacebook } from "react-icons/ai";
 import { AiFillInstagram } from "react-icons/ai";
+import axios from "axios";
 
 const ContactUs = () => {
   const entity = useSelector((state) => state.user);
@@ -13,26 +14,30 @@ const ContactUs = () => {
     message: "",
   });
 
-  console.log(formData);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Realizar validaciones aquí js,luego remover el required (por ejemplo, verificar que los campos no estén vacíos).
 
     // Enviar el mensaje por correo electrónico (implementación simulada) agregar luego.
     const messageData = {
-      Name: formData.name,
-      Email: formData.email,
-      Message: formData.message,
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
     };
 
     // Aquí se va agregar la lógica para enviar el mensaje por correo electrónico.
     // En este ejemplo, solo mostraremos los datos en la consola.
+    try {
+      const ms = await axios.post("/api/users/message", messageData);
+      console.log(ms);
+    } catch (error) {
+      console.log(error.message);
+    }
 
     setFormData({
       name: entity.username ?? entity.name,
@@ -40,7 +45,7 @@ const ContactUs = () => {
       message: "",
     });
 
-    console.log("Mensaje enviado:", messageData);
+    // console.log("Mensaje enviado");
   };
 
   useEffect(() => {
