@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Rating = ({ rating, setRating , handleToRating }) => {
-  
-
-  const handleStarClick = (star) => {
+const Rating = ({ rating, setRating, handleToRating }) => {
+  const handleStarClick = async (star) => {
     setRating(star);
   };
 
@@ -13,15 +11,15 @@ const Rating = ({ rating, setRating , handleToRating }) => {
         <span
           key={star}
           onClick={() => handleStarClick(star)}
-          className={`cursor-pointer text-4xl ${star <= rating ? 'text-yellow-400' : 'text-gray-300 md:font-bold'}`}
+          className={`cursor-pointer text-4xl ${
+            star <= rating ? "text-yellow-400" : "text-gray-300 md:font-bold"
+          }`}
         >
           {star <= rating ? "★" : "☆"}
         </span>
       ))}
 
-      <span className="relative w-4 h-4 bg-red">
-
-      </span>
+      <span className="relative w-4 h-4 bg-red"></span>
 
       <button
         className="bg-red-500 text-white py-2 px-4 ml-4 rounded"
@@ -33,4 +31,4 @@ const Rating = ({ rating, setRating , handleToRating }) => {
   );
 };
 
-export default Rating
+export default Rating;

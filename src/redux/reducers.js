@@ -13,14 +13,13 @@ import { persistReducer } from "redux-persist";
 import wishlistReducer from "./slices/WishlistSlice";
 import categoryReducer from "./slices/categorySlice";
 import loginReducer from "./slices/LoginSlice";
-import ratingReducer from "./slices/editRatingSlice";
+
 const userPersistConfig = {
   key: "user",
   storage: storage,
 };
 
 const rootReducer = combineReducers({
-  rating: ratingReducer,
   login: loginReducer,
   user: persistReducer(userPersistConfig, userReducer),
   orderDetail: orderDetailReducer,

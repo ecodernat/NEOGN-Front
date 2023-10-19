@@ -10,28 +10,24 @@ const OrderHistory = () => {
   const { id } = useParams();
   const orderDetail = useSelector((state) => state.orderDetail.orderDetail);
 
-
-
   // const orderDetail = {
-  //   paymentId: 12345, 
+  //   paymentId: 12345,
   //   products: [
   //     {
-  //       id:"SKU005",
+  //       id: "SKU005",
   //       name: "Product 1",
   //       price: 10.99,
   //       quantity: 2,
   //     },
   //     {
-  //       id:"SKU006",
+  //       id: "SKU006",
   //       name: "Product 2",
   //       price: 5.99,
   //       quantity: 1,
   //     },
   //   ],
- 
   // };
 
-  
   const products = orderDetail.products;
 
   useEffect(() => {
