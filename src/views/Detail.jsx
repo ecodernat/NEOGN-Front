@@ -106,7 +106,7 @@ const Detail = () => {
   };
 
   const handleToggleWishlist = () => {
-    console.log("user wish", wishlist)
+    
     if (!user.id) {
       return navigate("/Account");
     }

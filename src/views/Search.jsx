@@ -62,7 +62,7 @@ useEffect(() => {
     const pages = productFiltered.filterResult.info.pages;
     if (pages !== undefined) {
       dispatch(setTotalPages({ totalPages: pages }));
-      console.log("productFiltered pages", pages);
+      
     }
   }
 }, [productFiltered.filterResult]);
@@ -87,14 +87,14 @@ useEffect(()=>{
     
   }
   const seeAll = ()=>{
-    console.log("see all")
+   
     dispatch(setCategory({category: ""})),
     dispatch(setOrder({order: ""}))
     dispatch(setPriceRange({minPrice:null}, {maxPrice:null}))
     dispatch(setPage({page:1}))
   }
 
-  console.log("filte",productFiltered)
+  
   return (
     <div className="h-full pb-32">
       

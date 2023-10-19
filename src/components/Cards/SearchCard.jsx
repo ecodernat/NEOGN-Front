@@ -57,7 +57,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
     };
     toast.success("Added to cart successfully ");
 
-    console.log(productData);
+    
     dispatch(addToCart(productData));
   };
 

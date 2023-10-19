@@ -41,7 +41,7 @@ const WishlistCard = ({ id, name, image, price, description, isInWishlist, toggl
     };
     toast.success("Added to cart successfully ");
 
-    console.log(productData);
+    
     dispatch(addToCart(productData));
   };
 

@@ -10,8 +10,7 @@ const CategoriesFilter = () => {
   const [selectCategory, setSelectCategory] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const filterParams = useSelector((state)=>state.filterParams);
-  console.log("filter params", filterParams)
-
+  
   const handleSelection = async (category) => {
     setIsLoading(true);
     setSelectCategory(category);
@@ -19,7 +18,7 @@ const CategoriesFilter = () => {
       await dispatch(setCategory({ category: category }));
       await dispatch(getFilter({ category: category }));
       setIsLoading(false);
-      console.log("filter params", filterParams)
+      
     } catch (error) {
       console.error("Error en la acción:", error);
       setIsLoading(false);

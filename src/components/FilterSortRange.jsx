@@ -10,7 +10,7 @@ export const FilterSortRange = () => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const filterParams = useSelector((state)=>state.filterParams);
-  console.log("filter params", filterParams)
+ 
 
   const params={
      category: filterParams.category,
@@ -19,12 +19,12 @@ export const FilterSortRange = () => {
      maxPrice: filterParams.maxPrice,
      page: filterParams.page,
   }
-  console.log("!!!!",params,minPrice,maxPrice)
+  
 
   const handleSortOrderChange = (order) => {
     dispatch(setOrder({order:order}))
     setSortOrder(order);
-    console.log("param",params)
+    
   };
   const handleMinPriceChange = (event) => {
     setMinPrice(event.target.value);   
@@ -38,7 +38,7 @@ export const FilterSortRange = () => {
 
   const applyFilter = () => {
     handlePriceRangeChange(minPrice,maxPrice)
-    console.log("AAAAAA",params)
+    
     
     dispatch(
 

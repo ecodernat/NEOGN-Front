@@ -15,7 +15,7 @@ const Wishlist = () => {
   
   
   const handleRemoveFromWishlist = (productId) => {
-    console.log("id", productId, id)
+    
     dispatch(removeFromWishlist({ id }));
     alert("Item removed");
   };
