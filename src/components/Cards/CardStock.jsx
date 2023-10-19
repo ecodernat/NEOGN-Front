@@ -12,7 +12,6 @@ const CardStock = ({
   const [newStock, setNewStock] = useState(stock);
 
   const handleToggleStatus = () => {
-    console.log(id);
     const newStatus = !status;
     setStatus(newStatus);
     toggleStatus(id, newStatus);
@@ -24,46 +23,40 @@ const CardStock = ({
   };
 
   const handleModifyStock = () => {
-    // Aquí debes llamar a la función toggleStatus con el nuevo valor de stock
     toggleStatus(id, status, newStock);
   };
 
   return (
-    <tbody className="bg-white divide-y divide-gray-200">
-      <tr className="transition-all hover:bg-gray-100 hover:shadow-lg">
-        <td className="px-6 py-4 whitespace-nowrap">
-          <div className="flex items-center">
-            <div className="flex-shrink-0 w-10 h-10">
-              <img className="w-10 h-10 rounded-full" src={image_url} alt="" />
-            </div>
-            <div className="ml-4">
-              <div className="text-sm font-medium text-gray-900">{title}</div>
-            </div>
-          </div>
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap">
+    <div className="max-w-screen-sm mx-auto p-4">
+      <div className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-transform transform hover:-translate-y-1">
+        <div className="text-center">
+          <img className="w-32  mx-auto mb-4" src={image_url} alt="" />
+          <div className="text-lg font-medium text-gray-900">{title}</div>
+        </div>
+        <div className="text-center mt-4">
           {status ? (
             <button
-              onClick={() => handleToggleStatus(id, !status)}
-              className="inline-flex px-4 py-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-[5px] hover:bg-green-600 hover:text-gray-100"
+              onClick={handleToggleStatus}
+              className="px-4 py-2 text-sm font-semibold text-white bg-green-500 rounded-[5px] hover:bg-green-600"
             >
               Enabled
             </button>
           ) : (
             <button
-              onClick={() => handleToggleStatus(id, !status)}
-              className="inline-flex px-4 py-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-[5px] hover:bg-red-600 hover:text-red-100"
+              onClick={handleToggleStatus}
+              className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-[5px] hover:bg-red-600"
             >
               Disabled
             </button>
           )}
-        </td>
-        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-          {stock}
-        </td>
-        <td className="px-3 py-4 text-sm font-medium text-right whitespace-nowrap">
+        </div>
+        <div className="flex mt-4">
+          <p className="text-lg font-medium text-gray-500">Stock:</p>
+          <p className="text-lg font-semibold ml-2 text-gray-900">{stock}</p>
+        </div>
+        <div className="mt-4 text-center">
           <input
-            className="border-2 mr-2 rounded-lg h-9 p-2"
+            className="w-full border p-2 rounded-lg"
             type="number"
             value={newStock}
             onChange={handleStockChange}
@@ -71,13 +64,13 @@ const CardStock = ({
           <button
             type="button"
             onClick={handleModifyStock}
-            className="w-[auto] focus:outline-none text-gray-200 bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"
+            className="w-full mt-4 px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-[5px] hover:bg-blue-500"
           >
             Modify Stock
           </button>
-        </td>
-      </tr>
-    </tbody>
+        </div>
+      </div>
+    </div>
   );
 };
 
