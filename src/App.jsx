@@ -63,8 +63,8 @@ const App = () => {
     location.pathname.startsWith("/Account/Orders") ||
     location.pathname.startsWith("/Account/Wishlist") ||
     location.pathname.startsWith("/Account/SignUp") ||
-    location.pathname === "/admin" ||
-    location.pathname.startsWith("/admin/Purchase-History") ||
+    location.pathname === "/Admin" ||
+    location.pathname.startsWith("/Admin/Purchase-History") ||
     location.pathname.startsWith("/Admin/Create-Product") ||
     location.pathname.startsWith("/Admin/Products-To-Modify") ||
     location.pathname.startsWith("/Admin/Products-To-Modify/:id") ||
