@@ -2,11 +2,19 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPage } from '../redux/slices/FilterParamsSlice';
 
-const Pagination = () => {
+const Pagination = (page) => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const filterParams = useSelector((state) => state.filterParams);
   const totalPages = filterParams.totalPages;
+  
+
+  if (filterParams.category) {
+      if (currentPage !== 1) {
+      dispatch(setPage({ page: 1 }));
+      setCurrentPage(1);
+    }
+  }
 
   const handlePrevClick = () => {
     if (currentPage > 1) {
@@ -47,7 +55,7 @@ const Pagination = () => {
           />
         </svg>
       </a>
-      <p className="text-gray-900">{currentPage}</p>
+      <p className="text-gray-900">{ currentPage}</p>
       <a
         href="#"
         className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
