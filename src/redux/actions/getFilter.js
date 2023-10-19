@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setFilter } from "../slices/filterSlice";
+import { setTotalPages } from "../slices/FilterParamsSlice";
 
 const getFilter = (filterParams) => {
   return async function (dispatch) {
@@ -7,7 +8,8 @@ const getFilter = (filterParams) => {
       const response = await axios.get(`/api/products/filter`, {
         params: filterParams,
       });
-
+      console.log("response filterget", response,"pages", response.data.info.pages)
+      
       dispatch(setFilter(response.data));
     } catch (error) {
       console.error(error);

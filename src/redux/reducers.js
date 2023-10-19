@@ -13,13 +13,15 @@ import { persistReducer } from "redux-persist";
 import wishlistReducer from "./slices/WishlistSlice";
 import categoryReducer from "./slices/categorySlice";
 import loginReducer from "./slices/LoginSlice";
+import FilterParamsReducer from "./slices/FilterParamsSlice";
+
 const userPersistConfig = {
   key: "user",
   storage: storage,
 };
 
 const rootReducer = combineReducers({
-  login: loginReducer,
+  filterParams: FilterParamsReducer,
   user: persistReducer(userPersistConfig, userReducer),
   orderDetail: orderDetailReducer,
   myOrders: myOrdersReducer,

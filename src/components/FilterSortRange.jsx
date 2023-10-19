@@ -2,32 +2,54 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import getFilter from "../redux/actions/getFilter";
-
+import{setPriceRange, setOrder} from '../redux/slices/FilterParamsSlice'
 export const FilterSortRange = () => {
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.category);
   const [sortOrder, setSortOrder] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const filterParams = useSelector((state)=>state.filterParams);
+  console.log("filter params", filterParams)
+
+  const params={
+     category: filterParams.category,
+     order: filterParams.order,
+     minPrice: filterParams.minPrice,
+     maxPrice: filterParams.maxPrice,
+     page: filterParams.page,
+  }
+  console.log("!!!!",params,minPrice,maxPrice)
 
   const handleSortOrderChange = (order) => {
+    dispatch(setOrder({order:order}))
     setSortOrder(order);
+    console.log("param",params)
   };
   const handleMinPriceChange = (event) => {
-    setMinPrice(event.target.value);
+    setMinPrice(event.target.value);   
   };
   const handleMaxPriceChange = (event) => {
-    setMaxPrice(event.target.value);
+    setMaxPrice(event.target.value);   
+  };
+  const handlePriceRangeChange = (min, max) => {
+    dispatch(setPriceRange({ min, max }));
   };
 
   const applyFilter = () => {
+    handlePriceRangeChange(minPrice,maxPrice)
+    console.log("AAAAAA",params)
+    
     dispatch(
+
       getFilter({
         //esto hay que cambiarlo mas adelante
-        category: categoryState.category,
-        min: minPrice,
-        max: maxPrice,
-        order: sortOrder,
+        // category: categoryState.category,
+        // min: minPrice,
+        // max: maxPrice,
+        // order: sortOrder,
+        //page? 
+        params
       })
     );
   };
