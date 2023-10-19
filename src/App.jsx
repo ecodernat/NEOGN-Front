@@ -90,9 +90,9 @@ const App = () => {
           <Route path="/Search" element={<Search />} />
           <Route path="/Wishlist" element={<Wishlist />} />
           <Route path="/Categories" element={<Categories />} />
-          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/Contact" element={<ContactUs />} />
           <Route path="/:id" element={<Detail />} />
-          <Route path="/about" element={<AboutUs />} />
+          <Route path="/About" element={<AboutUs />} />
           <Route
             path="/Account"
             element={<Account handleThemeSwitch={handleThemeSwitch} />}
