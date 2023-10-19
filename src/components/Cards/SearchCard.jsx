@@ -3,21 +3,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import  toast  from "react-hot-toast";
 import { addToCart } from "../../redux/slices/CartSlice";
-import { addToWishlist, removeFromWishlist } from "../../redux/slices/WishlistSlice";
+import { addToWishlist, removeFromWishlist } from "../../redux/slices/userSlice";
 import Heart from "../../utils/images/AppbarIcons/DarkHeart.png";
 import activeHeart from '../../utils/images/AppbarIcons/ActiveHeart.png'
 
 const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
   const dispatch = useDispatch();
   const [isAdded, setIsAdded] = useState(false);
-  const wishlist = useSelector((state) => state.wishlist);
+  const user = useSelector((state)=>state.user);
+  const wishlist = user.wishlist;
   const [showFullDescription, setShowFullDescription] = useState(false);
   const loginState = useSelector((state)=> state.login)
   const navigate = useNavigate()
   
+  const existingProduct = wishlist.find((product) => product.id === id);
   useEffect(() => {
    
-    const existingProduct = wishlist.find((product) => product.id === id);
     setIsAdded(existingProduct ? true : false);
   }, [wishlist, id]);
 

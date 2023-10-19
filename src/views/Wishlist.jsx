@@ -1,24 +1,29 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { Link } from "react-router-dom";
 import Back from "../utils/images/BasicIcons/backIcon.png";
-import { removeFromWishlist } from "../redux/slices/WishlistSlice";
 import WishlistCard from "../components/Cards/WishlistCard";
+import { removeFromWishlist } from "../redux/slices/userSlice";
+
 
 const Wishlist = () => {
   const dispatch = useDispatch();
-  const wishlist = useSelector((state) => state.wishlist);
-  const loginState = useSelector((state) => state.login);
-  console.log("login state", loginState);
 
+  const user = useSelector ((state)=>state.user)
+  const wishlist = user.wishlist
+  
+  
+  
   const handleRemoveFromWishlist = (productId) => {
-    dispatch(removeFromWishlist({ id: productId }));
+    console.log("id", productId, id)
+    dispatch(removeFromWishlist({ id }));
     alert("Item removed");
   };
 
-  if (!loginState.login) {
-    return <Link to="/Account/SignUp">Go to SignUp</Link>;
+  if (!user.id) {
+    return (
+    
+    <Link to="/Account/SignUp">Go to SignUp</Link>)
   }
 
   return (
