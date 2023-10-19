@@ -37,8 +37,8 @@ const Categories = () => {
           { image: Controllers, name: "Controllers" },
           { image: Earbuds, name: "Earbuds" },
           { image: Microphones, name: "Microphones" },
-        ].map((el) => (
-          <Link to={`/Search`}>
+        ].map((el, num) => (
+          <Link to={`/Search`} key={num}>
             <button onClick={() => handleSelection(el.name)}>
               <div className="flex flex-col justify-center items-center w-[190px] h-[120px] border border-gray-100 rounded-[18px] shadow-lg">
                 <img className="w-[70px] h-[70px]" src={el.image} />
