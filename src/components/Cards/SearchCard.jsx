@@ -36,7 +36,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
 
   const handleToggleWishlist = () => {
     
-    if (!loginState.login) {
+    if (!user.id) {
       return navigate("/Account");
     }    
     toggleWishlist(id);    

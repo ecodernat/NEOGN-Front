@@ -99,7 +99,7 @@ const Detail = () => {
   
   const handleToggleWishlist = () => {
     console.log("user wish", wishlist)
-    if (!loginState.login) {
+    if (!user.id) {
       return navigate("/Account");
     }    
     toggleWishlist(id);

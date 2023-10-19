@@ -22,8 +22,20 @@ const Wishlist = () => {
 
   if (!user.id) {
     return (
-    
-    <Link to="/Account/SignUp">Go to SignUp</Link>)
+      <div className="w-full h-screen flex flex-col items-center justify-center mt-[-100px] gap-6">
+      <h1 className="text-[24px] font-semibold leading-tight tracking-tight text-gray-900 md:text-xl dark:text-white flex justify-center">
+        Welcome to your Wishlist! 😊
+      </h1>
+      <p className="text-gray-900 dark:text-white text-center">
+        To start saving your favorite products, please log in.
+      </p>
+      <Link to="/Account">
+        <button className="text-white bg-heroColor hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-red-400 font-medium rounded-full text-base px-4 py-2 text-center dark:bg-primary-600 dark:hover-bg-primary-700 dark:focus:ring-primary-800">
+          Go to Login
+        </button>
+      </Link>
+    </div>
+        )
   }
 
   return (

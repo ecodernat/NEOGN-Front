@@ -4,19 +4,12 @@ import { LuSettings2 } from "react-icons/lu";
 import CategoriesFilter from "../components/CategoriesForFilters";
 import SearchCard from "../components/Cards/SearchCard";
 import FilterSortRange from "../components/FilterSortRange";
-import fetchProducts from "../redux/actions/getProducts";
 import getFilter from "../redux/actions/getFilter";
-import {
-  addToWishlist,
-  removeFromWishlist,
-} from "../redux/slices/WishlistSlice";
+import {addToWishlist} from "../redux/slices/WishlistSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const categoryState = useSelector((state) => state.category);
   const productFiltered = useSelector((state) => state.filter);
-  const loginState = useSelector((state) => state.login);
-  console.log("login state", loginState);
   const [showFilter, setShowFilter] = useState(false);
   const [addedProducts, setAddedProducts] = useState([]);
 
