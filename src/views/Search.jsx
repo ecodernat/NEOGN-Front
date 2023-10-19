@@ -4,7 +4,6 @@ import { LuSettings2 } from "react-icons/lu";
 import CategoriesFilter from "../components/CategoriesForFilters";
 import SearchCard from "../components/Cards/SearchCard";
 import FilterSortRange from "../components/FilterSortRange";
-import fetchProducts from "../redux/actions/getProducts";
 import getFilter from "../redux/actions/getFilter";
 import {addToWishlist, removeFromWishlist,} from "../redux/slices/WishlistSlice";
 import { setTotalPages,setOrder,setCategory,setPriceRange, setPage } from "../redux/slices/FilterParamsSlice";
@@ -13,7 +12,6 @@ import Pagination from "../components/Pagination";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const categoryState = useSelector((state) => state.category);
   const productFiltered = useSelector((state) => state.filter);
  
  
