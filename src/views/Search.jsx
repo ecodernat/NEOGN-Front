@@ -51,14 +51,34 @@ const Search = () => {
   }, []);
 
   return (
-    <div className="h-full pb-32">
+    <div className="h-full pb-32 ">
       <div className="font-jakarta-sans w-auto flex justify-between items-center mx-10 my-6">
         <h1 className="text-stone-900 text-[18px] font-bold tracking-wide">
           By Category
         </h1>
-        <button onClick={toFilter}>
+        {/* <button onClick={toFilter}>
+          <LuSettings2 className="text-black-500 text-[30px] font-semibold" />
+        </button> */}
+                      <div className="relative w-[300px] overflow-hidden [font-family:'Roboto-Regular',Helvetica] font-normal text-oil-11 text-[16px] tracking-[0] leading-[normal]">
+                <input
+                  type="checkbox"
+                  className="peer absolute top-0 inset-x-0 w-full h-12 opacity-0 z-10 cursor-pointer"
+                />
+                <div className=" h-12 w-full pl-5 flex items-center">
+                  <h1 className="">Product Specifications</h1>
+                </div>
+                <div className="absolute top-3 right-3  transition-transform duration-500 rotate-0 peer-checked:rotate-180">
+                <button onClick={toFilter}>
           <LuSettings2 className="text-black-500 text-[30px] font-semibold" />
         </button>
+                </div>
+
+                <div className="content bg-gray-100 rounded-[12px] overflow-hidden transition-all duration-500 max-h-0 peer-checked:max-h-80">
+                  <div className="p-4">
+                  <FilterSortRange />
+                  </div>
+                </div>
+              </div>
       </div>
       {showFilter && <FilterSortRange />}
       <div className="w-auto h-auto m-6">
@@ -70,7 +90,7 @@ const Search = () => {
         </h1>
       </div>
       <div className="w-full flex justify-center items-center">
-        <div className="w-auto h-0 grid grid-cols-1 gap-1 justify-center mx-3 border font-bold">
+        <div className=" w-auto grid grid-cols-1 gap-1 justify-center mx-3 border font-bold">
           {Array.isArray(productFiltered.filterResult.results) ? (
             productFiltered.filterResult.results.map((product) => (
               <SearchCard
