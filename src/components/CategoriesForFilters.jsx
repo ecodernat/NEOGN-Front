@@ -44,6 +44,7 @@ const categories = [
 ];
 
 const CategoriesFilter = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -65,8 +66,8 @@ const CategoriesFilter = () => {
     speed: 10,
     slidesToShow: 4,
     slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: "138px",
+    centerMode: "12px",
+    centerPadding: "147px",
     responsive: [
       {
         breakpoint: 928,
@@ -85,24 +86,29 @@ const CategoriesFilter = () => {
 
   const handleImageClick = (category) => {
     handleSelection(category.name);
+    setSelectedCategory(category.name);
   };
 
   return (
-    <div className="w-full  mx-auto p-1">
+    <div className="w-full  mx-auto ">
       {isLoading && <Loading />}
       <Slider {...settings}>
         {categories.map((category, index) => (
           <div
-            key={index}
-            onClick={() => handleImageClick(category)}
-            className="w-10 h-10 sm:w-10 cursor-pointer flex flex-col  justify-center items-center "
-          >
+          key={index}
+          onClick={() => handleImageClick(category)}
+          className={` sm:w-50 cursor-pointer flex flex-col justify-center items-center border-violet-800 rounded-xl overflow-hidden ${
+            selectedCategory === category.name ? "object-cover  h-[45px] rounded-[5px] border border-violet-800" : ""
+          }`}
+          
+          
+        >
             <img
               src={category.image}
-              className="object-cover w-[50px] h-[50px] rounded-xl  border border-violet-300 bg-gray-100"
+              className=" slider-image w-[45px] h-[45px] rounded-xl  border border-violet-400 bg-gray-100"
               alt={`category-${index}`}
             />
-            <div className="mt-1 text-center text-xs font-light font-bold text-gray-100 transparent-text ">
+            <div className={`mt-1 text-center text-xs font-light font-bold text-gray-100 transparent-text hidden md:block`}>
               {category.name}
             </div>
           </div>
