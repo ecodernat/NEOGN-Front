@@ -16,9 +16,8 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
   const loginState = useSelector((state)=> state.login)
   const navigate = useNavigate()
   
-  const existingProduct = wishlist.find((product) => product.id === id);
+  const existingProduct = wishlist ? wishlist.find((product) => product.id === id) : null;
   useEffect(() => {
-   
     setIsAdded(existingProduct ? true : false);
   }, [wishlist, id]);
 
@@ -64,10 +63,8 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
 
   
 
-  const displayDescription = showFullDescription ? description : description.slice(0, 31);
-  const descriptionText = description.length > 31 ? (
-    showFullDescription ? description : `${description.slice(0, 31)}...`
-  ) : description;
+  const displayDescription = description ? (showFullDescription ? description : description.slice(0, 31)) : "";
+  const descriptionText = description && description.length > 31 ? (showFullDescription ? description : `${description.slice(0, 31)}...`) : description;
 
   return (
     <div className="flex flex-col items-center bg-red p-3 rounded-lg shadow-lg mb-2 rounded-md md:rounded-lg mx-2 md:mx-2 border-red max-w-screen-xl">
