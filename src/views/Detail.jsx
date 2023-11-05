@@ -9,6 +9,7 @@ import heart from "../utils/images/AppbarIcons/DarkHeart.png";
 import activeHeart from "../utils/images/AppbarIcons/ActiveHeart.png";
 import backIcon from "../utils/images/BasicIcons/backIcon.png";
 import toast, { Toaster } from "react-hot-toast";
+import {TbTruckReturn} from "react-icons/tb"
 
 //import Loading from "./Loading";
 import {
@@ -131,16 +132,16 @@ const Detail = () => {
           Detail
         </h1>
       </div>
+      <div className="block lg:flex flex-column ">
+        <div className="flex flex-row  justify-evenly pr-3 pl-3 h-[20rem] md:h-[30rem] lg:h-[34rem] lg:w-[130rem] lg:pr-2 ">
+        <div className="small images overflow-hidden content flex  flex-col items-end w-1/3 md:w-1/4 h-[20rem] md:h-[30rem] lg:h-[34rem]  justify-between pr-3 ">
+        <div className={`inline-flex justify-center shadow-md h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[6rem] lg:w-[6rem] bg-absolutestatic white-s rounded-[12px] p-1 ${
+            selectedImageIndex === 1
+              ? "border border-red-400"
+              : "border border-solid border-oil-03"
+          } lg:h-[8rem] lg:w-[8rem]`}
+        >
 
-      <div className="flex flex-row  justify-evenly pr-3 pl-3 h-[20rem] md:h-[30rem] lg:h-[34rem] xl:h-auto ">
-        <div className="small images overflow-hidden content flex flex-col w-1/3 md:w-1/5 lg:w-1/6 h-[20rem] md:h-[30rem] lg:h-[34rem] xl:h-auto justify-evenly pr-3">
-          <div
-            className={`inline-flex justify-center h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[10rem] lg:w-[10rem] xl:h-auto bg-absolutestaticwhite-s rounded-[12px] p-1 ${
-              selectedImageIndex === 1
-                ? "border border-red-400"
-                : "border border-solid border-oil-03"
-            }`}
-          >
             <button onClick={() => handleClick(1)} className={` `}>
               <img
                 className="w-full h-full object-center object-middle object-contain bg-cover bg-no-repeat "
@@ -154,8 +155,7 @@ const Detail = () => {
             </button>
           </div>
 
-          <div
-            className={`inline-flex justify-center h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[10rem] lg:w-[10rem] xl:h-auto bg-absolutestaticwhite-s rounded-[12px] p-1 ${
+        <div className={`inline-flex justify-center shadow-md h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[6rem] lg:w-[6rem] bg-absolutestatic white-s rounded-[12px] p-1 ${
               selectedImageIndex === 2
                 ? "border border-red-400"
                 : "border border-solid border-oil-03"
@@ -174,8 +174,7 @@ const Detail = () => {
             </button>
           </div>
 
-          <div
-            className={`inline-flex justify-center h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[10rem] lg:w-[10rem] xl:h-auto bg-absolutestaticwhite-s rounded-[12px] p-1 ${
+        <div className={`inline-flex justify-center shadow-md h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[6rem] lg:w-[6rem] bg-absolutestatic white-s rounded-[12px] p-1 ${
               selectedImageIndex === 3
                 ? "border border-red-400"
                 : "border border-solid border-oil-03"
@@ -193,8 +192,7 @@ const Detail = () => {
               />
             </button>
           </div>
-          <div
-            className={`inline-flex justify-center h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[10rem] lg:w-[10rem] xl:h-auto bg-absolutestaticwhite-s rounded-[12px] p-1 ${
+        <div className={`inline-flex justify-center shadow-md h-[4rem] w-[4rem] md:h-[6rem] md:w-[6rem] lg:h-[6rem] lg:w-[6rem] bg-absolutestatic white-s rounded-[12px] p-1 ${
               selectedImageIndex === 0
                 ? "border border-red-400"
                 : "border border-solid border-oil-03"
@@ -214,7 +212,7 @@ const Detail = () => {
           </div>
         </div>
 
-        <div className="Big image  flex bg-[#f6eaec] rounded-tl-[20px] rounded-bl-[20px] overflow-hidden relative  w-[30rem] md:w-[35rem] lg:w-[44rem] xl:w-auto">
+        <div className="Big image  flex bg-[#f6eaec] rounded-tl-[20px] rounded-bl-[20px] md:rounded-[20px] overflow-hidden relative  w-[30rem] md:w-[35rem]  ">
           <div className="absolute top-6 right-6">
             <div
               className="Wishlist-Heart inline-flex relative bg-absolutestaticwhite-s rounded-[10px] border border-solid"
@@ -243,8 +241,9 @@ const Detail = () => {
         </div>
       </div>
 
-      <div className="2part flex flex-col justify-between relative pt-6 pl-[20px] pr-[20px] md:pl-15 md:pl-15 lg:pr-20 lg:pl-20">
+        <div className="2part flex flex-col justify-between relative pt-6 lg:pt-0 pl-[20px] pr-[20px] md:pl-15 md:pl-15 lg:pr-20  lg:w-[30rem]">
         <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
+
           <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto-Bold',Helvetica] font-bold text-oil-11 text-[24px] tracking-[0] leading-[normal] overflow-hidden">
             {`${product.name}`}
           </div>
@@ -258,7 +257,11 @@ const Detail = () => {
               {product.averageRating}
             </div>
           </div>
-        </div>
+          
+        </div >
+        <p className="  relative mt-[-0.5rem] hidden lg:block justify-around font-[Roboto-Regular, Helvetica] font-normal text-oil-11 text-[14px] tracking-[0] leading-normal ">
+          {product.category}
+        </p>
 
         <p className="  relative  justify-around font-[Roboto-Regular, Helvetica] font-normal text-oil-11 text-[14px] tracking-[0] leading-normal">
           {product.description}
@@ -359,19 +362,72 @@ const Detail = () => {
           </div>
           <img className="relative h-px bg-gray-300 w-full" />
         </div>
+        <div className="Fre delivery-container hidden lg:block flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
+            <div className="gap-[12px] inline-flex items-center relative flex-[0_0_auto]">
+              <div className="justify-center gap-[10px] p-[9px] bg-[#f6eaec] rounded-[10px] inline-flex items-center relative flex-[0_0_auto]">
+                <TbTruckReturn className="relative w-[24px] h-[24px]"/>
+              </div>
+              <div className="relative w-[300px] overflow-hidden [font-family:'Roboto-Regular',Helvetica] font-normal text-oil-11 text-[16px] tracking-[0] leading-[normal]">
+                <input
+                  type="checkbox"
+                  className="peer absolute top-0 inset-x-0 w-full h-12 opacity-0 z-10 cursor-pointer"
+                />
+                <div className=" h-12 w-full pl-5 flex items-center">
+                  <h1 className="">Free delivery and Returns</h1>
+                </div>
+                <div className="absolute top-3 right-3  transition-transform duration-500 rotate-0 peer-checked:rotate-180">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </div>
 
-        <div className="flex flex-row pt-4  ">
+                <div className="content bg-gray-100 rounded-[12px] overflow-hidden transition-all duration-500 max-h-0 peer-checked:max-h-40">
+                  <div className="p-4">
+                    <p>
+                    Free standard delivery on orders over $50.
+                    You can return your order for any reason, free of charge, within 30 days.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        <div className="flex flex-row lg:flex-col lg:items-start lg:gap-3 pt-4  ">
           <div className="flex w-[342px] items-center justify-between ">
-            <p className="relative w-fit [font-family:'Roboto-Medium',Helvetica] font-medium text-[#0d0d0d] text-[24px] tracking-[0] leading-[normal] whitespace-nowrap">
+            <p className=" relative w-fit lg:hidden [font-family:'Roboto-Medium',Helvetica] font-medium text-[#0d0d0d] text-[24px] tracking-[0] leading-[normal] whitespace-nowrap">
               <span className="[font-family:'Roboto-Medium',Helvetica] font-medium text-[#0d0d0d] text-[24px] tracking-[0]">
                 {`$${product.price}`}
               </span>
               {/* <span className="text-[18px]">99</span> */}
             </p>
+          <button 
+            
+            className="bg-[#f6eaec] flex w-[200px] items-center justify-center gap-[4px] p-[12px] relative rounded-[15px] hidden shadow-md lg:block"
+            src={isAdded ? activeHeart : heart}
+
+            onClick={handleToggleWishlist}
+          >
+            <div className="relative  [font-family:'Roboto-Medium',Helvetica] font-medium text-absolutestaticwhite-s text-[18px] tracking-[0] leading-[normal] whitespace-nowrap">
+              Add To Wishlist
+            </div>
+          </button>
           </div>
           <button
             style={{ backgroundColor: "rgba(229, 70, 96, 1)" }}
-            className="flex w-[200px] items-center justify-center gap-[4px] p-[12px] relative rounded-[15px]"
+            className="flex w-[200px] items-center justify-center gap-[4px] p-[12px] relative rounded-[15px] text-white shadow-md "
             onClick={handleAddToCart}
           >
             <div className="relative w-fit [font-family:'Roboto-Medium',Helvetica] font-medium text-absolutestaticwhite-s text-[18px] tracking-[0] leading-[normal] whitespace-nowrap">
@@ -380,6 +436,8 @@ const Detail = () => {
           </button>
         </div>
       </div>
+      </div>
+
       <Toaster />
     </div>
   );
