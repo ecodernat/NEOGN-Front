@@ -10,6 +10,7 @@ import activeHeart from "../utils/images/AppbarIcons/ActiveHeart.png";
 import backIcon from "../utils/images/BasicIcons/backIcon.png";
 import toast, { Toaster } from "react-hot-toast";
 import {TbTruckReturn} from "react-icons/tb"
+import Footer from "../components/Footer/Footer"
 
 //import Loading from "./Loading";
 import {
@@ -115,6 +116,7 @@ const Detail = () => {
   };
 
   return (
+    
     <div className="allHome flex flex-col w-auto h-auto  left-[15px] mt-[30px] mb-[140px] md:mb-[600px] lg:mb-[700px]">
       <div className="detail-header flex  flex-row gap-5 w-full pl-4 pb-3  md:pl-15 lg:pl-20">
         <button className="arrow-left   ">
@@ -440,6 +442,7 @@ const Detail = () => {
 
       <Toaster />
     </div>
+    
   );
 };
 

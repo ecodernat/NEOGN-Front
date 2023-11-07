@@ -7,6 +7,7 @@ import Slider from "../components/Home/Slider";
 import TopCategories from "../components/Home/TopCategories";
 import getFilter from '../redux/actions/getFilter';
 import Loading from "./Loading"; 
+import Footer from "../components/Footer/Footer";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
+    
     <div className="h-full pb-32">
       {isLoading && <Loading />} 
       <div className="h-auto mx-10 mt-10 w-auto">
@@ -59,6 +61,7 @@ const Home = () => {
           ))}
         </div>
       </div>
+      
     </div>
   );
 };

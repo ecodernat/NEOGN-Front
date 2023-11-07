@@ -26,6 +26,7 @@ import EditProfile from "./components/DashboardUser/EditProfile";
 import OrderHistory from "./components/DashboardUser/OrderHistory";
 import WishlistAccount from "./components/DashboardUser/WishlistAccount";
 import OrderDetails from "./components/DashboardUser/Orders/OrderDetails";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -119,6 +120,10 @@ const App = () => {
           }
         `}
       </style>
+      <div className="hidden lg:block">
+        {!isTopBarHidden && <Footer/>}
+      </div>
+      
     </AuthProvider>
   );
 };
