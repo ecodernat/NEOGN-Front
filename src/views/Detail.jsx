@@ -10,13 +10,15 @@ import activeHeart from "../utils/images/AppbarIcons/ActiveHeart.png";
 import backIcon from "../utils/images/BasicIcons/backIcon.png";
 import toast, { Toaster } from "react-hot-toast";
 import { addToWishlist, removeFromWishlist } from "../redux/slices/userSlice";
+import Loading from "../views/Loading";
+
 
 const Detail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { id } = useParams();
-  //const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const goBackHandler = () => {
     navigate(-1);
@@ -110,9 +112,25 @@ const Detail = () => {
     console.log("user wish", wishlist)
     
   };
+  useEffect(() => {
+    setIsLoading(true); 
+    dispatch(fetchProductById(id))
+      .then(() => {
+       
+        setIsLoading(false);
+      })
+      .catch(() => {
+        
+        setIsLoading(false);
+      });
+    return () => {
+      dispatch(clearDetail());
+    };
+  }, [dispatch, id]);
 
   return (
     <div className="allHome flex flex-col w-auto h-auto  left-[15px] mt-[30px] mb-[140px] md:mb-[600px] lg:mb-[700px]">
+      {isLoading && <Loading />} 
       <div className="detail-header flex  flex-row gap-5 w-full pl-4 pb-3  md:pl-15 lg:pl-20">
         <button className="arrow-left   ">
           <img

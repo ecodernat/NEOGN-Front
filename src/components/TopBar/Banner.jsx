@@ -28,7 +28,7 @@ const Banner = () => {
 
   return (
     <Link to="/cart" className="block">
-    <div className="bg-black text-white py-2 text-center overflow-hidden font-AdihausDIN text-sm">
+    <div className="bg-black text-white py-3 text-center overflow-hidden font-AdihausDIN text-sm">
       <div className="marquee">
         {message}
       </div>

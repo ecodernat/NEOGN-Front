@@ -105,7 +105,7 @@ const CategoriesFilter = () => {
         >
             <img
               src={category.image}
-              className=" slider-image w-[45px] h-[45px] rounded-xl  border border-violet-400 bg-gray-100"
+              className=" slider-image w-[53px] h-[55px] rounded-xl  border border-violet-400 bg-gray-100"
               alt={`category-${index}`}
             />
             <div className={`mt-1 text-center text-xs font-light font-bold text-gray-100 transparent-text hidden md:block`}>

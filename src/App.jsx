@@ -26,8 +26,13 @@ import EditProfile from "./components/DashboardUser/EditProfile";
 import OrderHistory from "./components/DashboardUser/OrderHistory";
 import WishlistAccount from "./components/DashboardUser/WishlistAccount";
 import OrderDetails from "./components/DashboardUser/Orders/OrderDetails";
+import AboutPage from "./views/AboutPage";
+import NavBar from "./components/NavBar";
+
+
 
 const App = () => {
+  const products = []
   const [theme, setTheme] = useState("light");
   const [Desktop, setDesktop] = useState(window.innerWidth > 1024);
 
@@ -73,6 +78,7 @@ const App = () => {
 
   return (
     <AuthProvider>
+      <NavBar />
       <div>
         {!isTopBarHidden && <TopBar />}
         <Routes>
@@ -92,7 +98,12 @@ const App = () => {
           <Route path="/Categories" element={<Categories />} />
           <Route path="/Contact" element={<ContactUs />} />
           <Route path="/:id" element={<Detail />} />
+          <Route path="detail/:id" element={<Detail />} />
           <Route path="/About" element={<AboutUs />} />
+          <Route path="/Aboutpage" element={<AboutPage />} />
+
+
+          
           <Route
             path="/Account"
             element={<Account handleThemeSwitch={handleThemeSwitch} />}
