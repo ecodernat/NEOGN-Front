@@ -3,21 +3,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import  toast  from "react-hot-toast";
 import { addToCart } from "../../redux/slices/CartSlice";
-import { addToWishlist, removeFromWishlist } from "../../redux/slices/WishlistSlice";
+import { addToWishlist, removeFromWishlist } from "../../redux/slices/userSlice";
 import Heart from "../../utils/images/AppbarIcons/DarkHeart.png";
 import activeHeart from '../../utils/images/AppbarIcons/ActiveHeart.png'
 
 const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
   const dispatch = useDispatch();
   const [isAdded, setIsAdded] = useState(false);
-  const wishlist = useSelector((state) => state.wishlist);
+  const user = useSelector((state)=>state.user);
+  const wishlist = user.wishlist;
   const [showFullDescription, setShowFullDescription] = useState(false);
   const loginState = useSelector((state)=> state.login)
   const navigate = useNavigate()
   
+  const existingProduct = wishlist.find((product) => product.id === id);
   useEffect(() => {
    
-    const existingProduct = wishlist.find((product) => product.id === id);
     setIsAdded(existingProduct ? true : false);
   }, [wishlist, id]);
 
@@ -35,7 +36,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
 
   const handleToggleWishlist = () => {
     
-    if (!loginState.login) {
+    if (!user.id) {
       return navigate("/Account");
     }    
     toggleWishlist(id);    
@@ -71,18 +72,20 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
   return (
     <div className="flex flex-col items-center bg-red p-3 rounded-lg shadow-lg mb-2 rounded-md md:rounded-lg mx-2 md:mx-2 border-red max-w-screen-xl">
       <div className="flex flex-row md:flex-row ">
-        <Link to={`/${id}`} className="md:w-1/3">
+        <Link to={`/${id}`} className="w-40   ">
+        <div className="md:w-40 md:h-40 rounded-lg shadow-lg mb-2 rounded-md md:rounded-lg mx-2 md:mx-2 border-red max-w-screen-xl">
           <img
             src={image}
             alt={name}
-            className="w-full h-auto object-cover rounded-lg text-center"
-            style={{ maxHeight: "120px", background: "#fceaea", padding: "1px", marginRight: "10px" }}
+            className="w-full h-full object-cover rounded-lg"
+            style={{ background: "#fceaea", padding: "1px", marginRight: "10px" }}
           />
+        </div>
         </Link>
-        <div className="md:w-2/3 md:pl-2 flex flex-col">
-          <div className="flex justify-between items-start mb-4">
+        <div className="w-2/3 md:pl-2 flex flex-col">
+          <div className="flex justify-between items-start mb-1">
 
-          <div className="text-gray-800 text-lg font-semibold overflow-hidden " style={{ marginLeft: "10px" }}>{name}</div>
+          <div className="text-gray-800 text-lg font-semibold overflow-hidden line-clamp-1" style={{ marginLeft: "10px" }}>{name}</div>
 
             <img
               src={ isAdded ? activeHeart: Heart}
@@ -92,7 +95,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
               onClick={handleToggleWishlist}
             />
           </div>
-          <div className="text-gray-600 text-sm mb-5 " style={{ fontFamily: "Roboto", marginLeft: "10px" }}>{descriptionText}</div>
+          <div className="text-gray-600 text-sm  " style={{ fontFamily: "Roboto", marginLeft: "10px" }}>{descriptionText}</div>
           {description.length > 31 && (
             <div className="flex items-center justify-center    ">
               <Link to={`/${id}`} className="text-red-600 text-xs cursor-pointer hover:underline hover:bg-transparent mr-2">
@@ -100,7 +103,7 @@ const SearchCard = ({ id, name, image, price, description, isInWishlist }) => {
               </Link>
             </div>
           )}
-          <div className="flex items-center justify-between mt-auto">
+          <div className="flex items-center justify-between mt-5 ">
             <div className="text-red-600 text-lg font-semibold" style={{ marginLeft: "12px" }}>${price}</div>
             <button   onClick={handleAddToCart}
              className="button bg-red-500 text-white text-sm px-3 py-1 rounded-md">

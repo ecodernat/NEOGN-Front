@@ -13,6 +13,7 @@ import { persistReducer } from "redux-persist";
 import wishlistReducer from "./slices/WishlistSlice";
 import categoryReducer from "./slices/categorySlice";
 import loginReducer from "./slices/LoginSlice";
+
 const userPersistConfig = {
   key: "user",
   storage: storage,

@@ -4,21 +4,17 @@ import { LuSettings2 } from "react-icons/lu";
 import CategoriesFilter from "../components/CategoriesForFilters";
 import SearchCard from "../components/Cards/SearchCard";
 import FilterSortRange from "../components/FilterSortRange";
-import fetchProducts from "../redux/actions/getProducts";
 import getFilter from "../redux/actions/getFilter";
-import {
-  addToWishlist,
-  removeFromWishlist,
-} from "../redux/slices/WishlistSlice";
+import {addToWishlist} from "../redux/slices/WishlistSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const categoryState = useSelector((state) => state.category);
   const productFiltered = useSelector((state) => state.filter);
   const loginState = useSelector((state) => state.login);
 
   const [showFilter, setShowFilter] = useState(false);
   const [addedProducts, setAddedProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const toFilter = () => {
     setShowFilter(!showFilter);
@@ -49,11 +45,31 @@ const Search = () => {
         <h1 className="text-stone-900 text-[18px] font-bold tracking-wide">
           By Category
         </h1>
-        <button onClick={toFilter}>
+        {/* <button onClick={toFilter}>
+          <LuSettings2 className="text-black-500 text-[30px] font-semibold" />
+        </button> */}
+                      <div className="relative w-[400px]  overflow-hidden [font-family:'Roboto-Regular',Helvetica] font-normal text-oil-11 text-[16px] tracking-[0] leading-[normal]">
+                <input
+                  type="checkbox"
+                  className="peer absolute top-0 inset-x-80 w-10 h-12 opacity-0 z-10 cursor-pointer"
+                />
+                <div className=" h-12 w-full pl-5 flex items-center">
+                  <h1 className=""></h1>
+                </div>
+                <div className="absolute top-3 right-3  transition-transform duration-500 rotate-0 peer-checked:rotate-180">
+                <button onClick={toFilter}>
           <LuSettings2 className="text-black-500 text-[30px] font-semibold" />
         </button>
+                </div>
+
+                <div className="content bg-gray-100 rounded-[12px] overflow-hidden transition-all duration-500 max-h-0 peer-checked:max-h-[400px]">
+                  <div className="">
+                  <FilterSortRange />
+                  </div>
+                </div>
+              </div>
       </div>
-      {showFilter && <FilterSortRange />}
+
       <div className="w-auto h-auto m-6">
         <CategoriesFilter />
       </div>
@@ -89,6 +105,7 @@ const Search = () => {
           </>
         )}
       </div>
+      
     </div>
   );
 };

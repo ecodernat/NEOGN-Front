@@ -10,9 +10,28 @@ const OrderHistory = () => {
   const { id } = useParams();
   const orderDetail = useSelector((state) => state.orderDetail.orderDetail);
 
+  // const orderDetail = {
+  //   paymentId: 12345,
+  //   products: [
+  //     {
+  //       id: "SKU005",
+  //       name: "Product 1",
+  //       price: 10.99,
+  //       quantity: 2,
+  //     },
+  //     {
+  //       id: "SKU006",
+  //       name: "Product 2",
+  //       price: 5.99,
+  //       quantity: 1,
+  //     },
+  //   ],
+  // };
+
   const products = orderDetail.products;
 
   useEffect(() => {
+    // Comentado para evitar llamada real al servidor mientras se realiza la prueba
     dispatch(getOrderPerId(id));
   }, [dispatch, id]);
 

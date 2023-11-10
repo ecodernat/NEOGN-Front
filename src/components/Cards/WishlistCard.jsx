@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Heart from "../../utils/images/AppbarIcons/IconoDelete.gif";
 
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromWishlist } from "../../redux/slices/WishlistSlice";
+import { removeFromWishlist } from "../../redux/slices/userSlice";
 import { addToCart } from "../../redux/slices/CartSlice";
 import  toast  from "react-hot-toast";
 

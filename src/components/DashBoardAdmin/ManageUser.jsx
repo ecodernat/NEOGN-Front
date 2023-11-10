@@ -50,53 +50,21 @@ const ManageUser = () => {
   return (
     <div className="w-auto flex justify-center flex-col ">
       <h3 className="mt-6 text-xl">Users</h3>
-      <div className="flex flex-col mt-6">
-        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block w-full overflow-x-scroll sm:px-6 lg:px-8">
-            <div className="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
-              <table className="min-w-full w-auto overflow-x-scroll divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                    >
-                      Name
-                    </th>
-
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                    >
-                      Status
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                    >
-                      Role
-                    </th>
-                    <th scope="col" className="relative px-6 py-3">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                {allUsers?.map((el) => (
-                  <CardUser
-                    key={el.id}
-                    id={el.id}
-                    toggleStatus={toggleStatus}
-                    toggleAdminStatus={toggleAdminStatus}
-                    name={el.name}
-                    email={el.email}
-                    image={el.photo_url}
-                    isAdmin={el.isAdmin}
-                    isDisable={el.isDisable}
-                  />
-                ))}
-              </table>
-            </div>
-          </div>
+      <div className="flex flex-col mt-6 mb-20">
+        <div className="px-2">
+          {allUsers?.map((el) => (
+            <CardUser
+              key={el.id}
+              id={el.id}
+              toggleStatus={toggleStatus}
+              toggleAdminStatus={toggleAdminStatus}
+              name={el.name}
+              email={el.email}
+              image={el.photo_url}
+              isAdmin={el.isAdmin}
+              isDisable={el.isDisable}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -81,8 +81,9 @@ const Detail = () => {
     }
   }, [product]);
 
-  const wishlist = useSelector((state) => state.wishlist);
-  const loginState = useSelector((state) => state.login);
+  const user = useSelector((state)=> state.user)
+  const wishlist = user.wishlist
+  const loginState = useSelector((state)=> state.login)
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
@@ -108,11 +109,14 @@ const Detail = () => {
   };
 
   const handleToggleWishlist = () => {
-    if (!loginState.login) {
+    console.log("user wish", wishlist)
+    if (!user.id) {
       return navigate("/Account");
     }
     toggleWishlist(id);
     setIsAdded(!isAdded);
+    console.log("user wish", wishlist)
+    
   };
 
   return (
@@ -294,7 +298,7 @@ const Detail = () => {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="w-6 h-6"
+                    className="w-6 h-6"
                   >
                     <path
                       stroke-linecap="round"
