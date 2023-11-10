@@ -8,7 +8,7 @@ import logo from '../../utils/images/Logo/NEOGN white.png'
 
 const Footer = () => {
   return (
-    <footer className='absolute left-0 w-full  h-[220px] bg-black text-white flex flex-col items-center justify-betweengit status  '>
+    <footer className='absolute left-0 w-full  h-[220px] bg-black text-white flex flex-col items-center justify-between  '>
      
       <Link to="/" ><img className='w-11 h-11 mt-10' src={logo} alt={logo}/> </Link>
       <ul className='flex flex-row space-x-6'>
