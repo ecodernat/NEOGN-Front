@@ -52,7 +52,7 @@ const DashBoardUser = ({ handleThemeSwitch }) => {
             Profile
           </h1>
         </div>
-        <ToggleDarkMode handleThemeSwitch={handleThemeSwitch} />
+        {/* <ToggleDarkMode handleThemeSwitch={handleThemeSwitch} /> */}
       </div>
       <div className="w-full h-auto flex flex-col justify-center items-center gap-6">
         <div className="w-[120px] h-[120px] rounded-full flex items-center justify-center overflow-hidden">
