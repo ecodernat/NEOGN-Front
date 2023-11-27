@@ -3,8 +3,8 @@ import InstagramLogo from "../assets/instagramlogo.svg"
 export default function AboutUs (){
     return(
         <>
-            <div className="font-jakarta-sans w-auto flex-column justify-between items-center mx-10 my-6">
-                <h1 className="text-stone-900 text-[24px] font-bold tracking-wide mb-4">About Us</h1>
+            <div className="font-jakarta-sans w-auto lg:h-[300px] flex-column justify-between items-center mx-10 my-6 ">
+                <h1 className="lg:mt-20 text-stone-900 text-[24px] font-bold tracking-wide mb-4">About Us</h1>
                 <p className="mb-6">
                     At NEOGN, we are passionate about technology and innovation. Founded with a vision to bring you the latest and most exciting electronic gadgets, we have been serving tech enthusiasts and gadget lovers since our inception.
                 </p>
