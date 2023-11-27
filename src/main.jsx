@@ -12,8 +12,8 @@ import axios from "axios";
 //Descomentar la ruta a la API en la que se desea realizar la peticion y comentar el que no se utilizará
 // ----------------------------------------------------
 
-// axios.defaults.baseURL = import.meta.env.VITE_URL_PRODUCTION;
-axios.defaults.baseURL = import.meta.env.VITE_URL_LOCAL;
+axios.defaults.baseURL = import.meta.env.VITE_URL_PRODUCTION;
+// axios.defaults.baseURL = import.meta.env.VITE_URL_LOCAL;
 
 // ----------------------------------------------------
 
